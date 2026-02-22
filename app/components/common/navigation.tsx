@@ -18,17 +18,31 @@ export default function Navigation() {
         elevation={3}
       >
         <BottomNavigation showLabels>
-          <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-          <BottomNavigationAction label="Destinations" icon={<PlaceIcon />} />
           <BottomNavigationAction
+            href="/home"
+            label="Home"
+            icon={<HomeIcon />}
+          />
+          <BottomNavigationAction
+            href="/destinations"
+            label="Destinations"
+            icon={<PlaceIcon />}
+          />
+          <BottomNavigationAction
+            href="/fares"
             label="Fares"
             icon={<AccountBalanceWalletIcon />}
           />
           <BottomNavigationAction
+            href="/navigation"
             label="Navigation"
             icon={<AssistantNavigationIcon />}
           />
-          <BottomNavigationAction label="About" icon={<InfoIcon />} />
+          <BottomNavigationAction
+            href="/about"
+            label="About"
+            icon={<InfoIcon />}
+          />
         </BottomNavigation>
       </Paper>
     </Box>
