@@ -13,10 +13,10 @@ export default function Layout({
 }>) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-[#d1f3c5]">
-      <main className="flex min-h-screen w-full flex-col items-center justify-between py-32 px-16 bg-[#d1f3c5] dark:bg-[#d1f3c5] sm:items-start">
+      <div className="flex min-h-screen w-full flex-col items-center justify-between py-32 px-16 bg-[#d1f3c5] dark:bg-[#d1f3c5] sm:items-start">
         {children}
         <Navigation />
-      </main>
+      </div>
     </div>
   );
 }
