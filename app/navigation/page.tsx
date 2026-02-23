@@ -1,5 +1,15 @@
-import { Box } from "@mui/material";
+"use client";
+
+import TopBar from "@/app/components/common/topbar";
+import { Stack } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 export default function Navigation() {
-  return <Box></Box>;
+  const router = useRouter();
+
+  return (
+    <Stack alignItems={"center"}>
+      <TopBar label="Navigation" onBackClick={() => router.back()} />
+    </Stack>
+  );
 }
