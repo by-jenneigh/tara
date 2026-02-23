@@ -25,4 +25,16 @@ export const DESTINATIONS = [
     type: DestinationType.nature,
     images: [],
   },
+  {
+    name: "Destination #5",
+    about: "lorem ipsum dolor et amus",
+    type: DestinationType.recreational,
+    images: [],
+  },
+  {
+    name: "Destination #6",
+    about: "lorem ipsum dolor et amus",
+    type: DestinationType.nature,
+    images: [],
+  },
 ];

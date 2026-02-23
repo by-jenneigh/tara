@@ -12,11 +12,11 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-white">
-      <main className="flex min-h-screen w-full flex-col items-center justify-between py-32 px-16 bg-white dark:bg-white sm:items-start">
+    <div className="flex items-center justify-center bg-zinc-50 font-sans dark:bg-[#d1f3c5]">
+      <div className="flex w-full flex-col items-center justify-center pt-12 pb-30 px-16 bg-[#d1f3c5] dark:bg-[#d1f3c5] sm:items-center">
         {children}
         <Navigation />
-      </main>
+      </div>
     </div>
   );
 }
