@@ -1,6 +1,7 @@
 import DestinationCard from "@/app/components/common/card";
 import Search from "@/app/components/common/search";
 import { DESTINATIONS } from "@/app/components/constants/destinations";
+import { FEATURES } from "@/app/components/constants/features";
 import { Grid, Stack, Typography } from "@mui/material";
 
 export default function Home() {
@@ -15,6 +16,22 @@ export default function Home() {
       </Stack>
 
       <Grid
+        mb={5}
+        container
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}
+      >
+        {FEATURES.map((destination, idx) => (
+          <DestinationCard
+            key={idx}
+            name={destination.name}
+            description={destination.about}
+            image={destination.icon}
+          />
+        ))}
+      </Grid>
+
+      <Grid
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
@@ -22,7 +39,7 @@ export default function Home() {
         <Typography color="black" variant="body1">
           Featured Destinations
         </Typography>
-        {DESTINATIONS.map((destination, idx) => (
+        {DESTINATIONS.slice(0, 2).map((destination, idx) => (
           <DestinationCard
             key={idx}
             name={destination.name}
