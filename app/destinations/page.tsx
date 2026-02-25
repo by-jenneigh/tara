@@ -11,7 +11,7 @@ export default function Destinations() {
   const router = useRouter();
 
   return (
-    <Stack alignItems={"center"}>
+    <Stack alignItems={"center"} className="pt-12 pb-30">
       <TopBar label="Destinations" onBackClick={() => router.back()} />
       <Stack alignContent={"center"} mb={5}>
         <Search />
@@ -28,6 +28,9 @@ export default function Destinations() {
             name={destination.name}
             description={destination.about}
             image={destination.images[0]}
+            onCardClick={() => {
+              router.push(`/destinations/${destination.id}`);
+            }}
           />
         ))}
       </Grid>
