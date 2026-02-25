@@ -25,7 +25,13 @@ function FollowUser({ position }: { position: [number, number] | null }) {
   return null;
 }
 
-export default function Map() {
+export default function Map({
+  destinationLat,
+  destinationLng,
+}: {
+  destinationLat?: number;
+  destinationLng?: number;
+}) {
   const [start, setStart] = useState<[number, number] | null>(null);
   const [end, setEnd] = useState<[number, number] | null>(null);
   const [route, setRoute] = useState<[number, number][]>([]);
@@ -33,6 +39,21 @@ export default function Map() {
     null,
   );
   const [fare, setFare] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!destinationLat || !destinationLng) return;
+
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const current: [number, number] = [
+        pos.coords.latitude,
+        pos.coords.longitude,
+      ];
+
+      setUserLocation(current);
+      setStart(current);
+      setEnd([destinationLat, destinationLng]);
+    });
+  }, [destinationLat, destinationLng]);
 
   function ClickHandler() {
     useMapEvents({
@@ -83,7 +104,11 @@ export default function Map() {
   return (
     <div className="relative w-full h-[calc(100vh-64px)]">
       <MapContainer
-        center={defaultCenter}
+        center={
+          destinationLat && destinationLng
+            ? [destinationLat, destinationLng]
+            : defaultCenter
+        }
         zoom={13}
         className="h-full w-full z-0"
       >
