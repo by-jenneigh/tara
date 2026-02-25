@@ -149,15 +149,14 @@ export default function Map() {
         )}
       </MapContainer>
 
-      {start ||
-        (end && (
-          <div className="absolute bottom-15 left-0 w-full bg-white rounded-t-3xl shadow-2xl p-5 z-50">
-            {!start && <p className="text-gray-500">Select starting point</p>}
-            {start && !end && (
-              <p className="text-gray-500">Now select destination</p>
-            )}
-          </div>
-        ))}
+      {(!start || !end) && (
+        <div className="absolute bottom-15 left-0 w-full bg-white rounded-t-3xl shadow-2xl p-5 z-50">
+          {!start && <p className="text-gray-500">Select starting point</p>}
+          {start && !end && (
+            <p className="text-gray-500">Now select destination</p>
+          )}
+        </div>
+      )}
 
       {(start || end) && (
         <button
