@@ -52,7 +52,11 @@ export default function Destination({
               variant="contained"
               size="small"
               fullWidth
-              onClick={() => router.push("/navigation")}
+              onClick={() =>
+                router.push(
+                  `/navigation?lat=${DESTINATION_DETAILS?.mapLocation.lat}&lng=${DESTINATION_DETAILS?.mapLocation.lng}`,
+                )
+              }
             >
               Start Navigation
             </Button>
