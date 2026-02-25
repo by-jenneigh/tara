@@ -26,12 +26,13 @@ export default function Home() {
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {FEATURES.map((destination, idx) => (
+        {FEATURES.map((feature, idx) => (
           <DestinationCard
             key={idx}
-            name={destination.name}
-            description={destination.about}
-            image={destination.icon}
+            name={feature.name}
+            description={feature.about}
+            image={feature.icon}
+            onCardClick={() => router.push(feature.path)}
           />
         ))}
       </Grid>
