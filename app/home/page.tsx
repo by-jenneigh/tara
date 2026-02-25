@@ -1,10 +1,15 @@
+"use client";
+
 import DestinationCard from "@/app/components/common/card";
 import Search from "@/app/components/common/search";
 import { DESTINATIONS } from "@/app/components/constants/destinations";
 import { FEATURES } from "@/app/components/constants/features";
 import { Grid, Stack, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <Stack alignItems={"center"}>
       <Stack alignContent={"center"} mb={5}>
@@ -44,6 +49,9 @@ export default function Home() {
             key={idx}
             name={destination.name}
             image={destination.images[0]}
+            onCardClick={() => {
+              router.push(`/destinations/${destination.id}`);
+            }}
           />
         ))}
       </Grid>
