@@ -26,8 +26,6 @@ export default function Destination({
     return DESTINATIONS.find((destination) => destination.id === id);
   }, [id]);
 
-  console.log(DESTINATION_DETAILS);
-
   return (
     <Stack alignItems={"center"} className="mb-10">
       <TopBar label="Destination Details" onBackClick={() => router.back()} />
