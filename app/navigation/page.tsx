@@ -4,7 +4,6 @@ import TopBar from "@/app/components/common/topbar";
 import { Stack } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 
 const Map = dynamic(() => import("@/app/components/common/map"), {
   ssr: false,
