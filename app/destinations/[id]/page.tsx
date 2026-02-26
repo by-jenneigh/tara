@@ -27,10 +27,10 @@ export default function Destination({
   }, [id]);
 
   return (
-    <Stack alignItems={"center"} className="mb-10">
+    <Stack alignItems={"center"}>
       <TopBar label="Destination Details" onBackClick={() => router.back()} />
 
-      <Card sx={{ height: "100vh", width: "100vw" }}>
+      <Card sx={{ width: "100vw" }} className="pb-30">
         <CardMedia
           sx={{ height: 300 }}
           image="/placeholder_image.jpg"
