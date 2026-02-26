@@ -200,7 +200,7 @@ export default function Map({
           )}
           {start && !end && (
             <Box sx={{ fontSize: "12px", fontWeight: 500, color: "#2e7d32" }}>
-              Now select destination
+              Select destination
             </Box>
           )}
         </Box>
