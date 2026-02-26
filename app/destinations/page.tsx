@@ -28,6 +28,7 @@ export default function Destinations() {
             name={destination.name}
             description={destination.about}
             image={destination.images[0]}
+            type={destination.type}
             onCardClick={() => {
               router.push(`/destinations/${destination.id}`);
             }}
