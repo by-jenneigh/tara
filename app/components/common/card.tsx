@@ -12,13 +12,13 @@ import { ReactNode } from "react";
 type DestinationCardProps = {
   name: string;
   image: string | ReactNode;
-  description?: string;
+  content?: string;
   type?: DestinationType;
   onCardClick?: () => void;
 };
 
 export default function DestinationCard(props: DestinationCardProps) {
-  const { name, image, description, onCardClick, type } = props;
+  const { name, image, content, onCardClick, type } = props;
 
   return (
     <Card sx={{ maxWidth: 142 }}>
@@ -59,15 +59,15 @@ export default function DestinationCard(props: DestinationCardProps) {
           <Typography
             align="center"
             gutterBottom
-            variant="body1"
+            variant="subtitle1"
             component="div"
             mb={0}
           >
             {name}
           </Typography>
-          {description && (
+          {content && (
             <Typography
-              align="center"
+              align="left"
               variant="body2"
               sx={{
                 color: "text.secondary",
@@ -77,7 +77,7 @@ export default function DestinationCard(props: DestinationCardProps) {
                 overflow: "hidden",
               }}
             >
-              {description}
+              {content}
             </Typography>
           )}
         </CardContent>
