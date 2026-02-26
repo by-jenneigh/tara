@@ -30,7 +30,7 @@ export default function Home() {
           <DestinationCard
             key={idx}
             name={feature.name}
-            description={feature.about}
+            content={feature.about}
             image={feature.icon}
             onCardClick={() => router.push(feature.path)}
           />

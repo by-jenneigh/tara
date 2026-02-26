@@ -26,7 +26,7 @@ export default function Destinations() {
           <DestinationCard
             key={idx}
             name={destination.name}
-            description={destination.about}
+            content={destination.town}
             image={destination.images[0]}
             type={destination.type}
             onCardClick={() => {
