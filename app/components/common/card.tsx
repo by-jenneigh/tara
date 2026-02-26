@@ -30,7 +30,7 @@ export default function DestinationCard(props: DestinationCardProps) {
             <CardMedia
               sx={{
                 width: 150,
-                height: 100,
+                height: 60,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -67,7 +67,7 @@ export default function DestinationCard(props: DestinationCardProps) {
           </Typography>
           {content && (
             <Typography
-              align="left"
+              align={typeof image === "string" ? "left" : "center"}
               variant="body2"
               sx={{
                 color: "text.secondary",
