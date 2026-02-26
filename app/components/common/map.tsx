@@ -10,6 +10,7 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 import { useEffect, useState } from "react";
+import { Box, Button } from "@mui/material";
 
 const defaultCenter: [number, number] = [14.5995, 120.9842];
 
@@ -102,7 +103,7 @@ export default function Map({
   }, []);
 
   return (
-    <div className="relative w-full h-[calc(100vh-64px)]">
+    <Box className="relative w-full h-[calc(100vh-64px)]">
       <MapContainer
         center={
           destinationLat && destinationLng
@@ -175,27 +176,60 @@ export default function Map({
       </MapContainer>
 
       {(!start || !end) && (
-        <div className="absolute bottom-15 left-0 w-full bg-white rounded-t-3xl shadow-2xl p-5 z-50">
-          {!start && <p className="text-gray-500">Select starting point</p>}
-          {start && !end && (
-            <p className="text-gray-500">Now select destination</p>
+        <Box
+          sx={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            bottom: 90,
+            zIndex: 1000,
+            bgcolor: "white",
+            px: 3,
+            py: 1.5,
+            borderRadius: "999px",
+            boxShadow: 4,
+            minWidth: 220,
+            textAlign: "center",
+            transition: "all 0.3s ease",
+          }}
+        >
+          {!start && (
+            <Box sx={{ fontSize: "12px", fontWeight: 500, color: "#2e7d32" }}>
+              Tap to select starting point
+            </Box>
           )}
-        </div>
+          {start && !end && (
+            <Box sx={{ fontSize: "12px", fontWeight: 500, color: "#2e7d32" }}>
+              Now select destination
+            </Box>
+          )}
+        </Box>
       )}
 
       {(start || end) && (
-        <button
+        <Button
+          variant="contained"
+          color="success"
           onClick={() => {
             setStart(null);
             setEnd(null);
             setRoute([]);
             setFare(null);
           }}
-          className="absolute right-4 bottom-15 z-50 bg-green-600 text-white px-4 py-2 rounded-full shadow-lg"
+          sx={{
+            position: "absolute",
+            right: 5,
+            transform: "translateX(-50%)",
+            top: 60,
+            zIndex: 1000,
+            px: 2,
+            py: 1,
+            boxShadow: 3,
+          }}
         >
           Reset
-        </button>
+        </Button>
       )}
-    </div>
+    </Box>
   );
 }
