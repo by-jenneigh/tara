@@ -1,36 +1,54 @@
 "use client";
+
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
-import { DESTINATIONS } from "@/app/components/constants/destinations";
 import { InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { Destination } from "@/app/components/types/destinations-type";
 
-export default function Search() {
+type SearchProps = {
+  options: Destination[];
+  onSelect?: (destination: Destination | null) => void;
+  onInputChange?: (value: string) => void;
+};
+
+export default function Search({
+  options,
+  onSelect,
+  onInputChange,
+}: SearchProps) {
   return (
-    <Stack spacing={2} sx={{ width: 300 }}>
+    <Stack sx={{ width: 300 }}>
       <Autocomplete
         freeSolo
-        id="free-solo-2-demo"
-        disableClearable
-        options={DESTINATIONS.map((option) => option.name)}
+        options={options}
+        getOptionLabel={(option) =>
+          typeof option === "string" ? option : option.name
+        }
+        onChange={(_, value) => {
+          if (typeof value !== "string") {
+            onSelect?.(value);
+          }
+        }}
+        onInputChange={(_, value) => {
+          onInputChange?.(value);
+        }}
         renderInput={(params) => (
           <TextField
+            {...params}
             variant="filled"
             margin="normal"
             color="success"
-            {...params}
             label="Search a destination"
-            slotProps={{
-              input: {
-                ...params.InputProps,
-                type: "search",
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              },
+            InputProps={{
+              ...params.InputProps,
+              type: "search",
+              endAdornment: (
+                <InputAdornment position="end">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
             }}
           />
         )}
