@@ -17,7 +17,7 @@ export default function Home() {
           Explore the 3rd District of Iloilo
         </Typography>
 
-        <Search />
+        <Search options={DESTINATIONS} />
       </Stack>
 
       <Grid
