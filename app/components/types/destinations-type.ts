@@ -16,3 +16,13 @@ export const DESTINATION_TYPE_STYLES: Record<
   [DestinationType.historical]: { color: "warning" },
   [DestinationType.nature]: { color: "success" },
 };
+
+export type Destination = {
+  id: string;
+  name: string;
+  about: string;
+  type: DestinationType;
+  images: string[];
+  town: string;
+  mapLocation: Record<string, number>;
+};
