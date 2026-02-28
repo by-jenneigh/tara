@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center bg-zinc-50 font-sans dark:bg-[#d1f3c5]">
-      <main className="flex w-full h-screen flex-col items-center px-16 bg-[#d1f3c5] dark:bg-[#d1f3c5] sm:items-center">
+      <main className="flex w-full min-h-screen flex-col items-center px-16 bg-[#d1f3c5] dark:bg-[#d1f3c5] sm:items-center">
         {children}
       </main>
 
