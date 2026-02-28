@@ -13,6 +13,16 @@ export const DESTINATIONS = [
       lat: 10.949046402622345,
       lng: 122.50236868771027,
     },
+    emergencyHotlines: [
+      {
+        entity: "Cabatuan Police Station",
+        hotline: "9999-99999",
+      },
+      {
+        entity: "Bureau of Fire Protection",
+        hotline: "7777-77777",
+      },
+    ],
   },
   {
     id: "destination-2",
@@ -26,6 +36,12 @@ export const DESTINATIONS = [
       lat: 10.879732926155558,
       lng: 122.48089313528908,
     },
+    emergencyHotlines: [
+      {
+        entity: "Cabatuan Police Station",
+        hotline: "9999-99999",
+      },
+    ],
   },
   {
     id: "destination-3",
@@ -39,6 +55,12 @@ export const DESTINATIONS = [
       lat: 10.89129595131261,
       lng: 122.43320703506471,
     },
+    emergencyHotlines: [
+      {
+        entity: "Cabatuan Police Station",
+        hotline: "9999-99999",
+      },
+    ],
   },
   {
     id: "destination-4",
@@ -52,6 +74,12 @@ export const DESTINATIONS = [
       lat: 10.949046402622345,
       lng: 122.50236868771027,
     },
+    emergencyHotlines: [
+      {
+        entity: "Cabatuan Police Station",
+        hotline: "9999-99999",
+      },
+    ],
   },
   {
     id: "destination-5",
@@ -65,6 +93,12 @@ export const DESTINATIONS = [
       lat: 10.879732926155558,
       lng: 122.48089313528908,
     },
+    emergencyHotlines: [
+      {
+        entity: "Cabatuan Police Station",
+        hotline: "9999-99999",
+      },
+    ],
   },
   {
     id: "destination-6",
@@ -78,5 +112,11 @@ export const DESTINATIONS = [
       lat: 10.89129595131261,
       lng: 122.43320703506471,
     },
+    emergencyHotlines: [
+      {
+        entity: "Cabatuan Police Station",
+        hotline: "9999-99999",
+      },
+    ],
   },
 ];

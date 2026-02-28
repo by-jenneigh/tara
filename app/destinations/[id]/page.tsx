@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { use, useMemo } from "react";
+import EmergencyIcon from "@mui/icons-material/Emergency";
 
 export default function Destination({
   params,
@@ -43,6 +44,25 @@ export default function Destination({
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             {DESTINATION_DETAILS?.about}
           </Typography>
+
+          {DESTINATION_DETAILS?.emergencyHotlines && (
+            <Stack mt={3} direction={"row"} spacing={1}>
+              <EmergencyIcon color="error" />
+              <Typography fontWeight={"bold"} color="#d21e2a" pb={1}>
+                EMERGENCY HOTLINES
+              </Typography>
+            </Stack>
+          )}
+
+          {DESTINATION_DETAILS?.emergencyHotlines &&
+            DESTINATION_DETAILS.emergencyHotlines.map((item) => (
+              <Stack key={item.entity} direction={"row"} spacing={1}>
+                <Typography variant="body2">{`${item.entity}:`}</Typography>
+                <Typography fontWeight={"bold"} variant="button">
+                  {item.hotline}
+                </Typography>
+              </Stack>
+            ))}
         </CardContent>
         <CardActions sx={{ width: "100%" }}>
           <Stack spacing={2} sx={{ width: "100%", px: 2 }}>
