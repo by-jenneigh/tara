@@ -5,7 +5,7 @@ import { useState } from "react";
 import BasicSelect from "@/app/components/common/select";
 import TopBar from "@/app/components/common/topbar";
 import { DESTINATIONS } from "@/app/components/constants/destinations";
-import { ORIGINS } from "@/app/components/constants/origin";
+import { ORIGINS } from "@/app/components/constants/origins";
 import {
   Stack,
   Button,
