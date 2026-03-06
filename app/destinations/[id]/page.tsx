@@ -15,6 +15,12 @@ import { useRouter } from "next/navigation";
 import { use, useMemo } from "react";
 import EmergencyIcon from "@mui/icons-material/Emergency";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
 export default function Destination({
   params,
 }: {
@@ -27,26 +33,47 @@ export default function Destination({
     return DESTINATIONS.find((destination) => destination.id === id);
   }, [id]);
 
+  const images = DESTINATION_DETAILS?.images ?? ["/placeholder_image.jpg"];
+
   return (
     <Stack alignItems={"center"}>
       <TopBar label="Destination Details" onBackClick={() => router.back()} />
 
       <Card sx={{ width: "100vw" }} className="pb-30">
-        <CardMedia
-          sx={{ height: 300 }}
-          image="/placeholder_image.jpg"
-          title="destination image"
-        />
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          style={{ width: "100%", height: 300 }}
+        >
+          {images.map((img, index) => (
+            <SwiperSlide key={index}>
+              <CardMedia
+                component="img"
+                image={img}
+                alt={`destination-image-${index}`}
+                sx={{ height: 300, objectFit: "cover" }}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {DESTINATION_DETAILS?.name}
           </Typography>
+
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            {DESTINATION_DETAILS?.about}
+            {DESTINATION_DETAILS?.about?.split("\n").map((line, i) => (
+              <span key={i}>
+                {line}
+                <br />
+                <br />
+              </span>
+            ))}
           </Typography>
 
           {DESTINATION_DETAILS?.emergencyHotlines && (
-            <Stack mt={3} direction={"row"} spacing={1}>
+            <Stack mt={1} direction={"row"} spacing={1}>
               <EmergencyIcon color="error" />
               <Typography fontWeight={"bold"} color="#d21e2a" pb={1}>
                 EMERGENCY HOTLINES
@@ -64,6 +91,7 @@ export default function Destination({
               </Stack>
             ))}
         </CardContent>
+
         <CardActions sx={{ width: "100%" }}>
           <Stack spacing={2} sx={{ width: "100%", px: 2 }}>
             <Button
@@ -80,6 +108,7 @@ export default function Destination({
             >
               Start Navigation
             </Button>
+
             <Button
               sx={{ height: 40 }}
               variant="contained"
@@ -89,6 +118,7 @@ export default function Destination({
             >
               View Map
             </Button>
+
             <Button
               variant="outlined"
               size="small"
