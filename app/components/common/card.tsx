@@ -57,11 +57,12 @@ export default function DestinationCard(props: DestinationCardProps) {
         </Box>
         <CardContent>
           <Typography
-            align="center"
+            align={typeof image === "string" ? "left" : "center"}
             gutterBottom
             variant="subtitle1"
             component="div"
-            mb={0}
+            mb={1}
+            lineHeight={1}
           >
             {name}
           </Typography>
