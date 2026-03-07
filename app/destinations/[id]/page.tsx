@@ -13,8 +13,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { use, useMemo } from "react";
-import EmergencyIcon from "@mui/icons-material/Emergency";
-
+import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 
@@ -72,19 +71,19 @@ export default function Destination({
             ))}
           </Typography>
 
-          {DESTINATION_DETAILS?.emergencyHotlines && (
+          {DESTINATION_DETAILS?.contact && (
             <Stack mt={1} direction={"row"} spacing={1}>
-              <EmergencyIcon color="error" />
-              <Typography fontWeight={"bold"} color="#d21e2a" pb={1}>
-                EMERGENCY HOTLINES
+              <ContactPhoneIcon color="primary" />
+              <Typography fontWeight={"bold"} color="primary" pb={1}>
+                CONTACT
               </Typography>
             </Stack>
           )}
 
-          {DESTINATION_DETAILS?.emergencyHotlines &&
-            DESTINATION_DETAILS.emergencyHotlines.map((item) => (
+          {DESTINATION_DETAILS?.contact &&
+            DESTINATION_DETAILS.contact.map((item) => (
               <Stack key={item.entity} direction={"row"} spacing={1}>
-                <Typography variant="body2">{`${item.entity}:`}</Typography>
+                <Typography variant="body1">{`${item.entity}:`}</Typography>
                 <Typography fontWeight={"bold"} variant="button">
                   {item.hotline}
                 </Typography>
