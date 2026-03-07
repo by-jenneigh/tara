@@ -17,14 +17,14 @@ export const DESTINATIONS = [
       lat: 10.949046402622345,
       lng: 122.50236868771027,
     },
-    emergencyHotlines: [
+    contact: [
       {
-        entity: "Maasin Police Station",
-        hotline: "9999-99999",
+        entity: "Mobile",
+        hotline: "09653413256",
       },
       {
-        entity: "Bureau of Fire Protection",
-        hotline: "7777-77777",
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
       },
     ],
   },
@@ -44,10 +44,10 @@ export const DESTINATIONS = [
       lat: 10.879732926155558,
       lng: 122.48089313528908,
     },
-    emergencyHotlines: [
+    contact: [
       {
-        entity: "Cabatuan Police Station",
-        hotline: "9999-99999",
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
       },
     ],
   },
@@ -63,10 +63,10 @@ export const DESTINATIONS = [
       lat: 10.89129595131261,
       lng: 122.43320703506471,
     },
-    emergencyHotlines: [
+    contact: [
       {
-        entity: "Cabatuan Police Station",
-        hotline: "9999-99999",
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
       },
     ],
   },
@@ -82,10 +82,10 @@ export const DESTINATIONS = [
       lat: 10.949046402622345,
       lng: 122.50236868771027,
     },
-    emergencyHotlines: [
+    contact: [
       {
-        entity: "Cabatuan Police Station",
-        hotline: "9999-99999",
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
       },
     ],
   },
@@ -101,10 +101,10 @@ export const DESTINATIONS = [
       lat: 10.879732926155558,
       lng: 122.48089313528908,
     },
-    emergencyHotlines: [
+    contact: [
       {
-        entity: "Cabatuan Police Station",
-        hotline: "9999-99999",
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
       },
     ],
   },
@@ -120,10 +120,10 @@ export const DESTINATIONS = [
       lat: 10.89129595131261,
       lng: 122.43320703506471,
     },
-    emergencyHotlines: [
+    contact: [
       {
-        entity: "Cabatuan Police Station",
-        hotline: "9999-99999",
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
       },
     ],
   },
