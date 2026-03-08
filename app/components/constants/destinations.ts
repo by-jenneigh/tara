@@ -53,12 +53,16 @@ export const DESTINATIONS = [
   },
   {
     id: "destination-3",
-    name: "Destination #3",
+    name: "Dam site and Mahogany Park",
     about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    type: DestinationType.recreational,
-    images: ["/placeholder_image.jpg"],
-    town: "Janiuay",
+      "The Maasin Dam is located in Brgy. Daja and the nearby Mahogany Park are well-known eco-tourism destinations in Maasin. Built in the late 1930s, the dam was originally constructed to supply water to Iloilo City and nearby towns such as Cabatuan, Pavia, and Sta. Barbara. Over time, the surrounding area developed into Mahogany Park, which is now famous for its tall mahogany trees, cool climate, and peaceful atmosphere. Today, the site serves not only as an important water source but also as a relaxing destination where visitors can enjoy nature and escape the busy environment of the city. \n The area is known for its scenic views, combining the large body of water from the dam with the lush green forest and surrounding hills. Because of its calm and refreshing environment, it is a great place for nature lovers, photographers, and visitors who simply want to walk around and enjoy the beauty of nature. The best time to visit is during the dry season from November to May, when the weather is sunny and ideal for outdoor activities. Early mornings are perfect for enjoying the quiet surroundings and fresh air, while late afternoons are also pleasant as the temperature becomes cooler. \n Visitors planning to go to the site should note that it is located in Brgy. Daja, Maasin, Iloilo. It is recommended to visit during the dry season because the trails can become muddy and slippery during rainy days. Wearing comfortable shoes and taking time to appreciate the peaceful environment will make the experience more enjoyable. Overall, the Maasin Dam and Mahogany Park offer a beautiful and refreshing nature escape for anyone looking to relax and experience the natural beauty of the area.",
+    type: DestinationType.nature,
+    images: [
+      "/destinations/daja-1.jpeg",
+      "/destinations/daja-2.jpeg",
+      "/destinations/daja-3.jpeg",
+    ],
+    town: "Maasin",
     mapLocation: {
       lat: 10.89129595131261,
       lng: 122.43320703506471,
@@ -72,12 +76,16 @@ export const DESTINATIONS = [
   },
   {
     id: "destination-4",
-    name: "Destination #4",
+    name: "Bamview Bistro",
     about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "One of the most popular tourist destinations in Maasin is Bamview Bistro, located in Barangay Naslo. This cozy restaurant has become a favorite spot for both locals and visitors who want to enjoy good food while surrounded by beautiful natural scenery. Known for its relaxing atmosphere, Bamview Bistro is a perfect place to unwind, dine, and appreciate the countryside's peaceful environment. \n Bamview Bistro is well-loved for its variety of delicious meals and quality coffee, which guests can enjoy while spending time with friends, family, or loved ones. The menu features a range of food choices that cater to different tastes, making it a great place for casual dining, small gatherings, or even a quiet coffee break. Many visitors come not only for the food but also for the comfortable and welcoming ambiance that the restaurant provides. \n What makes Bamview Bistro truly special is its stunning location. The restaurant overlooks a scenic river and is surrounded by lush green mountains, creating a breathtaking view that visitors can enjoy while dining. The cool breeze and natural surroundings make the experience even more relaxing, especially for people who want to escape the busy environment of the city. Because of its elevated location, guests are able to see a wide view of the landscape, which makes the place very popular for photography and sightseeing. \n One of the best times to visit Bamview Bistro is during the late afternoon or early evening. Many guests come at this time to witness the beautiful sunset as the sky slowly changes colors and the warm golden light reflects over the river and mountains. This peaceful and picturesque view makes the dining experience even more memorable. Whether someone wants to relax with a cup of coffee, enjoy a satisfying meal, or simply admire the natural beauty of Maasin, Bamview Bistro offers a wonderful place to experience it all.",
     type: DestinationType.nature,
-    images: ["/placeholder_image.jpg"],
-    town: "Cabatuan",
+    images: [
+      "/destinations/bamview-1.jpeg",
+      "/destinations/bamview-2.jpeg",
+      "/destinations/bamview-3.jpeg",
+    ],
+    town: "Maasin",
     mapLocation: {
       lat: 10.949046402622345,
       lng: 122.50236868771027,
