@@ -8,8 +8,16 @@ export const ORIGINS = [
     },
   },
   {
-    id: "terminal",
-    name: "Ungka Pavia Terminal",
+    id: "terminal-1",
+    name: "Robinson's Pavia Terminal",
+    mapLocation: {
+      lat: 10.745,
+      lng: 122.5575,
+    },
+  },
+  {
+    id: "terminal-2",
+    name: "Christ The King Pavia Terminal",
     mapLocation: {
       lat: 10.745,
       lng: 122.5575,
