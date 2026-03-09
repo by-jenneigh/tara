@@ -12,8 +12,8 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex items-center bg-zinc-50 font-sans dark:bg-[#d1f3c5]">
-      <main className="flex w-full min-h-screen flex-col items-center px-16 bg-[#d1f3c5] dark:bg-[#d1f3c5] sm:items-center">
+    <div className="flex items-center bg-zinc-50 font-sans dark:bg-white">
+      <main className="flex w-full min-h-screen flex-col items-center py-17 px-10 bg-white dark:bg-white sm:items-center">
         {children}
       </main>
 
