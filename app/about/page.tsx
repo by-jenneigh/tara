@@ -1,7 +1,7 @@
 "use client";
 
 import TopBar from "@/app/components/common/topbar";
-import { Stack, Box, Typography } from "@mui/material";
+import { Stack, Box, Typography, List } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 export default function About() {
@@ -14,7 +14,7 @@ export default function About() {
         <Typography color="black" variant="h5">
           About Tara
         </Typography>
-        <Typography align="justify" color="black" variant="body2" mt={2}>
+        <Typography align="justify" color="black" mt={2}>
           TARA: A Travel and Route Assistance Platform for Tourist Navigation
           and Transportation Fare Guidance is a mobile-first web application
           developed to centralize tourism destination information, route
@@ -40,17 +40,23 @@ export default function About() {
         <Typography color="black" variant="h5">
           Covered Municipalities
         </Typography>
-        <Typography ml={2} align="justify" color="black" variant="body2" mt={2}>
-          <li>Cabatuan</li>
-          <li>Maasin</li>
-          <li>Janiuay</li>
-        </Typography>
+        <ul
+          style={{
+            marginLeft: 2,
+            alignContent: "justify",
+            color: "black",
+          }}
+        >
+          <li>• Cabatuan</li>
+          <li>• Maasin</li>
+          <li>• Janiuay</li>
+        </ul>
       </Box>
       <Box>
         <Typography color="black" variant="h5">
           Data and Information Sources
         </Typography>
-        <Typography align="justify" color="black" variant="body2" mt={2}>
+        <Typography align="justify" color="black" mt={2}>
           The tourism and transportation information presented in TARA is based
           on official data collected from the Municipal Tourism Offices and
           Local Government Units (LGUs) of Cabatuan, Maasin, and Janiuay,
@@ -70,7 +76,7 @@ export default function About() {
         <Typography color="black" variant="h5">
           Important Disclaimer
         </Typography>
-        <Typography align="justify" color="black" variant="body2" mt={2}>
+        <Typography align="justify" color="black" mt={2}>
           TARA is an informational travel-assistance platform designed to
           support tourists visiting selected destinations in Cabatuan, Maasin,
           and Janiuay, Iloilo. The platform provides transportation fare
