@@ -99,10 +99,10 @@ export const DESTINATIONS = [
   },
   {
     id: "destination-5",
-    name: "Destination #5",
+    name: "St. James the Greater Church in Maasin",
     about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    type: DestinationType.recreational,
+      "Augustinian missionaries arrived in Maasin in 1615. The church they erected was a visita of Jaro Parish and then of Cabatuan Parish Church beginning in 1732. Finally, it became a parish in 1755. Fr. Francisco Jimenez was the parish priest beginning in 1759. \n During the Philippine Revolution, the Augustinians left in 1898 and Mill Hill Fathers took over in 1906, with Fr. Walter Cain becoming the first parish priest belonging to the said religious order. They handed the parish over to the diocesan in 1963. \n Fluted pilasters frame the central panel of the church’s front wall, containing the portico, the statue of the patron by the red wall with the inscription “St. James the Greater, pray for us”, twin arch windows, a cartouche containing the Roman numeral MCMXXXV (1935), and dentil. The walls flanking it contain blind rose windows. The bell tower is in the gospel side.",
+    type: DestinationType.religious,
     images: ["/placeholder_image.jpg"],
     town: "Maasin",
     mapLocation: {
@@ -118,12 +118,35 @@ export const DESTINATIONS = [
   },
   {
     id: "destination-6",
-    name: "Destination #6",
+    name: "Francisco's Farm Resto and Grill",
     about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "Francisco's Farm Resto and Grill - is one of the charming dining destinations in Maasin, located in Barangay Sinubsuban. This restaurant is known for its relaxing farm-style atmosphere, making it an ideal place for people who want to enjoy delicious food while surrounded by a calm and refreshing environment. With its open space, greenery, and peaceful surroundings, Francisco's Farm Resto and Grill provides guests with a comfortable place to unwind and spend quality time with family and friends. \n The restaurant offers a wide variety of dishes that can satisfy different tastes, making it the perfect place to dine for any occasion. Whether visitors are looking for a hearty meal, a casual lunch, or a special dinner, the restaurant’s menu provides many flavorful options prepared with care. The combination of good food and a pleasant ambiance makes the dining experience more enjoyable and memorable for guests. \n Aside from being a restaurant, Francisco's Farm Resto and Grill is also a great venue for celebrations and special gatherings. The place features a spacious pavilion that can accommodate different types of events such as birthdays, weddings, reunions, and other important occasions. Because of its beautiful surroundings and relaxing atmosphere, many people choose this location to celebrate memorable moments with their loved ones. \n Visitors who come to Francisco's Farm Resto and Grill can experience not only great food but also the warm and welcoming atmosphere that the place offers. Its peaceful farm-like setting allows guests to relax, enjoy nature, and take a break from the busy pace of everyday life. For anyone visiting Maasin, Iloilo, stopping by this restaurant is a wonderful opportunity to enjoy delicious meals, celebrate special events, and experience the charm of a countryside dining destination.",
     type: DestinationType.nature,
     images: ["/placeholder_image.jpg"],
-    town: "Janiuay",
+    town: "Maasin",
+    mapLocation: {
+      lat: 10.89129595131261,
+      lng: 122.43320703506471,
+    },
+    contact: [
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+  },
+  {
+    id: "destination-7",
+    name: "Maasin Town Plaza",
+    about:
+      "MAASIN - is a scenic 3rd-class municipality in the province of Iloilo, proudly known as the “Bamboo Capital of Panay.” The town is famous for its rich bamboo resources, peaceful natural surroundings, and vibrant cultural traditions. Visitors often come to experience its relaxing atmosphere, explore its eco-tourism spots, and learn about its deep historical roots that date back to the Spanish colonial period. \n At the center of the town is the Maasin Town Plaza, which serves as the heart of community life. It is a gathering place where locals hold celebrations, cultural programs, and displays of bamboo crafts. One of the most anticipated events in the town is the Tultugan Festival, celebrated every December. During this festival, bamboo—locally called tultugan—is highlighted as a musical instrument, tool, and symbol of the town’s identity. The celebration features lively street dancing, music made from bamboo instruments, and colorful cultural performances that showcase the creativity of the community. \n Maasin is also well known for its extensive bamboo plantations, which have become part of its eco-tourism attractions. Visitors can enjoy scenic river views, peaceful countryside landscapes, and natural sites such as the Maasin Dam, a historic watershed dam that supplies water to nearby areas. These natural attractions make the town a great place for travelers who enjoy quiet nature trips and scenic outdoor experiences. \n Historically, Maasin officially became a town in 1775, with Don Agustin Garcia serving as its first Capitan. The name “Maasin” comes from the phrase ma-asin, which refers to the salt spring found in Barangay Magsaysay, a natural resource that early settlers used for their livelihood. \n The best time to visit Maasin is during December, when the Tultugan Festival brings the town to life with music, dances, and cultural activities. Visitors can also enjoy the area during the dry season from November to May, when the weather is generally sunny and ideal for exploring outdoor attractions. \n Maasin is highly recommended for travelers who appreciate culture, history, and nature. From its unique bamboo traditions and lively festivals to its relaxing natural scenery and historical heritage, the town offers a memorable experience for nature lovers, bamboo enthusiasts, and cultural explorers alike.",
+    type: DestinationType.recreational,
+    images: [
+      "/destinations/maasin-plaza-1.jpeg",
+      "/destinations/maasin-plaza-2.jpeg",
+      "/destinations/maasin-plaza-3.jpeg",
+    ],
+    town: "Maasin",
     mapLocation: {
       lat: 10.89129595131261,
       lng: 122.43320703506471,
