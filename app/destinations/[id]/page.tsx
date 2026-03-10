@@ -3,11 +3,13 @@
 import TopBar from "@/app/components/common/topbar";
 import { DESTINATIONS } from "@/app/components/constants/destinations";
 import {
+  Box,
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
+  Chip,
   Stack,
   Typography,
 } from "@mui/material";
@@ -19,6 +21,11 @@ import { Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import {
+  DESTINATION_TYPE_STYLES,
+  DestinationType,
+} from "@/app/components/types/destinations-type";
+import { LocationCityRounded } from "@mui/icons-material";
 
 export default function Destination({
   params,
@@ -33,6 +40,8 @@ export default function Destination({
   }, [id]);
 
   const images = DESTINATION_DETAILS?.images ?? ["/placeholder_image.jpg"];
+  const safeDestinationType =
+    DESTINATION_DETAILS?.type || DestinationType.recreational;
 
   return (
     <Stack alignItems={"center"}>
@@ -61,7 +70,22 @@ export default function Destination({
             {DESTINATION_DETAILS?.name}
           </Typography>
 
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+          <Stack spacing={1} direction={"row"} pb={2}>
+            <Chip
+              label={safeDestinationType}
+              color={DESTINATION_TYPE_STYLES[safeDestinationType].color}
+            />
+            <Chip
+              label={DESTINATION_DETAILS?.town}
+              icon={<LocationCityRounded />}
+            />
+          </Stack>
+
+          <Typography
+            align="justify"
+            variant="body2"
+            sx={{ color: "text.secondary" }}
+          >
             {DESTINATION_DETAILS?.about?.split("\n").map((line, i) => (
               <span key={i}>
                 {line}
