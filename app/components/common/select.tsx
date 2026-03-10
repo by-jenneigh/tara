@@ -27,7 +27,7 @@ export default function BasicSelect(props: BasicSelectProps) {
   };
 
   return (
-    <Box sx={{ minWidth: 300, ...sx }}>
+    <Box sx={{ width: 300, ...sx }}>
       <FormControl fullWidth>
         <InputLabel
           id={`${selectId}-label`}
@@ -48,7 +48,11 @@ export default function BasicSelect(props: BasicSelectProps) {
           color="success"
         >
           {options.map((option) => (
-            <MenuItem key={option.id} value={option.id}>
+            <MenuItem
+              key={option.id}
+              value={option.id}
+              sx={{ whiteSpace: "normal" }}
+            >
               {option.name}
             </MenuItem>
           ))}

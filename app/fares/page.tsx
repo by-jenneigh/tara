@@ -94,6 +94,7 @@ export default function Fares() {
         spacing={5}
         px={2}
         sx={{ width: "100%", maxWidth: 600, mx: "auto" }}
+        alignItems={"center"}
       >
         <BasicSelect
           options={ORIGINS}
