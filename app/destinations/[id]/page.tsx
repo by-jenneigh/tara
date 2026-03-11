@@ -3,7 +3,6 @@
 import TopBar from "@/app/components/common/topbar";
 import { DESTINATIONS } from "@/app/components/constants/destinations";
 import {
-  Box,
   Button,
   Card,
   CardActions,
@@ -137,7 +136,11 @@ export default function Destination({
               variant="contained"
               size="small"
               fullWidth
-              onClick={() => router.push("/navigation")}
+              onClick={() =>
+                router.push(
+                  `/navigation?lat=${DESTINATION_DETAILS?.mapLocation.lat}&lng=${DESTINATION_DETAILS?.mapLocation.lng}&fromCurrentPosition=${false}`,
+                )
+              }
             >
               View Map
             </Button>

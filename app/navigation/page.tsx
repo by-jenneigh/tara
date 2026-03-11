@@ -14,6 +14,8 @@ export default function Navigation() {
 
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
+  const fromCurrentPosition =
+    searchParams.get("fromCurrentPosition") === "true" ? true : false;
   const router = useRouter();
 
   return (
@@ -23,6 +25,7 @@ export default function Navigation() {
       <Map
         destinationLat={lat ? Number(lat) : undefined}
         destinationLng={lng ? Number(lng) : undefined}
+        fromCurrentPosition={fromCurrentPosition}
       />
     </Stack>
   );
