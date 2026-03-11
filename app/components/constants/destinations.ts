@@ -14,8 +14,8 @@ export const DESTINATIONS = [
     ],
     town: "Maasin",
     mapLocation: {
-      lat: 10.949046402622345,
-      lng: 122.50236868771027,
+      lat: 10.8804126,
+      lng: 122.4270634,
     },
     contact: [
       {
@@ -41,8 +41,8 @@ export const DESTINATIONS = [
     ],
     town: "Maasin",
     mapLocation: {
-      lat: 10.879732926155558,
-      lng: 122.48089313528908,
+      lat: 10.8994988,
+      lng: 122.4187922,
     },
     contact: [
       {
