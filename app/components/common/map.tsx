@@ -29,9 +29,11 @@ function FollowUser({ position }: { position: [number, number] | null }) {
 export default function Map({
   destinationLat,
   destinationLng,
+  fromCurrentPosition,
 }: {
   destinationLat?: number;
   destinationLng?: number;
+  fromCurrentPosition?: boolean;
 }) {
   const [start, setStart] = useState<[number, number] | null>(null);
   const [end, setEnd] = useState<[number, number] | null>(null);
@@ -44,17 +46,27 @@ export default function Map({
   useEffect(() => {
     if (!destinationLat || !destinationLng) return;
 
-    navigator.geolocation.getCurrentPosition((pos) => {
-      const current: [number, number] = [
-        pos.coords.latitude,
-        pos.coords.longitude,
-      ];
+    if (!fromCurrentPosition) {
+      setStart(null);
+      setRoute([]);
+      setFare(null);
+    }
 
-      setUserLocation(current);
-      setStart(current);
-      setEnd([destinationLat, destinationLng]);
-    });
-  }, [destinationLat, destinationLng]);
+    if (fromCurrentPosition) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const current: [number, number] = [
+          pos.coords.latitude,
+          pos.coords.longitude,
+        ];
+
+        setUserLocation(current);
+        setStart(current);
+        setEnd([destinationLat, destinationLng]);
+      });
+    }
+
+    setEnd([destinationLat, destinationLng]);
+  }, [destinationLat, destinationLng, fromCurrentPosition]);
 
   function ClickHandler() {
     useMapEvents({
@@ -95,12 +107,14 @@ export default function Map({
   }, [start, end]);
 
   useEffect(() => {
-    const watchId = navigator.geolocation.watchPosition((pos) => {
-      setUserLocation([pos.coords.latitude, pos.coords.longitude]);
-    });
+    if (fromCurrentPosition) {
+      const watchId = navigator.geolocation.watchPosition((pos) => {
+        setUserLocation([pos.coords.latitude, pos.coords.longitude]);
+      });
 
-    return () => navigator.geolocation.clearWatch(watchId);
-  }, []);
+      return () => navigator.geolocation.clearWatch(watchId);
+    }
+  }, [fromCurrentPosition]);
 
   return (
     <Box className="relative w-full h-[calc(100vh-64px)]">
