@@ -70,7 +70,6 @@ export default function Destinations() {
             bgcolor: "#d1f3c5",
             pt: 2,
             pb: 2,
-            px: 2,
           }}
         >
           <Search
