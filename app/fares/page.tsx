@@ -19,10 +19,26 @@ import {
 import { useRouter } from "next/navigation";
 
 const VEHICLE_RATES = {
-  Tricycle: { min: 15, perKm: 5 },
-  Jeep: { min: 12, perKm: 3 },
-  Bus: { min: 10, perKm: 2 },
-  Motorcycle: { min: 5, perKm: 1 },
+  Tricycle: {
+    base: 20,
+    baseKm: 1,
+    perKm: 8,
+  },
+  Jeep: {
+    base: 13,
+    baseKm: 4,
+    perKm: 2.5,
+  },
+  Bus: {
+    base: 12,
+    baseKm: 5,
+    perKm: 2,
+  },
+  Motorcycle: {
+    base: 10,
+    baseKm: 2,
+    perKm: 3,
+  },
 };
 
 export function getDistanceKm(
@@ -66,14 +82,18 @@ export default function Fares() {
     );
 
     const results = Object.entries(VEHICLE_RATES).map(([vehicle, rate]) => {
-      const minFare = rate.min;
-      const maxFare = rate.min + distance * rate.perKm;
+      let fare = rate.base;
+
+      if (distance > rate.baseKm) {
+        const extraKm = distance - rate.baseKm;
+        fare += extraKm * rate.perKm;
+      }
 
       return {
         vehicle,
         distance: distance.toFixed(2),
-        minFare: minFare.toFixed(2),
-        maxFare: maxFare.toFixed(2),
+        minFare: rate.base.toFixed(2),
+        maxFare: fare.toFixed(2),
       };
     });
 
