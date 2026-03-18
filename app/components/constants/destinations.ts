@@ -165,9 +165,9 @@ export const DESTINATIONS = [
       "Igbiating Falls is a beautiful hidden waterfall located in Barangay Barasalon, Janiuay, Iloilo, Philippines. Surrounded by thick forest and natural rock formations, the waterfall is fed by the Igbiating River and flows into a clear and refreshing pool. \n It is considered a hidden gem because it is not yet crowded with tourists, making it a peaceful place where visitors can enjoy nature, swim in the cool water, take photos, or simply relax. Reaching the falls usually requires a short trek through the forest, but the beautiful scenery and calm atmosphere make the journey worth it.",
     type: DestinationType.nature,
     images: [
-      "/destinations/maasin-plaza-1.jpeg",
-      "/destinations/maasin-plaza-2.jpeg",
-      "/destinations/maasin-plaza-3.jpeg",
+      "/destinations/igbiating-1.jpeg",
+      "/destinations/igbiating-2.jpeg",
+      "/destinations/igbiating-3.jpeg",
     ],
     town: "Janiuay",
     mapLocation: {
@@ -188,9 +188,9 @@ export const DESTINATIONS = [
       "Damires Hills Farm and Spa Resort is situated in a sprawling land of endless foliage awash with tropical beauty. Damires Hills Farm and Spa Resort is situated in an exclusive 16-hectare compound that offers a serene paradise experience like no other. Head over to this gem with just a 45-minute ride away from Iloilo International Airport. \n Rekindle your love for nature as you are surrounded by lush greenery and stunning landscapes that are exquisitely complemented by the vibrant culture of Iloilo. Feel the warm welcome as you set foot in Damires Hills and be greeted with genuine smiles from our friendly staff who are dedicated to providing you with an excellent experience in which the resort is known. Indulge yourself in a tranquil getaway when you stay in one of the cozy rooms and villas equipped with all your needs for a relaxing vacation. Here in Damires Hills Farm and Spa Resort, our guests can indulge in bespoke services and amenities while they delight in the stunning sights and sounds of Mother Nature. A Sanctuary with Comforts – Heliconia Rooms and Family Villa. A home to 28 well-appointed and nature-inspired abodes – our rooms offer serenity and comfort with everything you could possibly need and interiors that emulate the rich culture of the City of Love — Iloilo. Damires Hills Farm and Spa Resort is a perfect hideaway to revitalize your soul, reconnect with your loved ones or to spend some quality time for yourself as each room is designed to create a feeling of home with refined and relaxing ambience. Rise early and greet the day while you experience the early-morning sunshine and nature’s beauty in their perfect stillness.",
     type: DestinationType.recreational,
     images: [
-      "/destinations/maasin-plaza-1.jpeg",
-      "/destinations/maasin-plaza-2.jpeg",
-      "/destinations/maasin-plaza-3.jpeg",
+      "/destinations/damires-1.jpeg",
+      "/destinations/damires-2.jpeg",
+      "/destinations/damires-3.jpeg",
     ],
     town: "Janiuay",
     mapLocation: {
