@@ -204,4 +204,72 @@ export const DESTINATIONS = [
       },
     ],
   },
+  {
+    id: "destination-10",
+    name: "Mt. IDAY",
+    about:
+      "Mt. IDAY, located in Janiuay, Iloilo, is a captivating destination that beckons nature lovers and adventure seekers alike. Known for its stunning panoramic views and lush surroundings, this mountain offers an escape from bustling city life. The trails winding through the mountainous terrain are suitable for both seasoned hikers and casual walkers, making it an ideal spot for family outings or solo adventures. Along the way, visitors can marvel at the diverse flora and fauna that thrive in this pristine environment, creating a perfect backdrop for photography enthusiasts and nature lovers. \n As you ascend, the cool mountain breeze and the chirping of native birds will accompany you, enhancing the serene experience. At the summit, the breathtaking vistas of the surrounding valleys and hills are nothing short of spectacular, providing a rewarding sense of accomplishment for those who reach the top. It's a place where one can reflect and rejuvenate, surrounded by the beauty of nature. Moreover, the local community is warm and welcoming, often sharing their insights and stories about the mountain's significance and the rich cultural heritage of the area. \n Visiting Mt. IDAY is not just about the hike; it's about immersing yourself in the natural beauty and cultural fabric of Iloilo. The mountain is accessible year-round, making it a perfect destination regardless of the season. Whether you're looking to embark on a challenging trek or simply wish to enjoy a picnic amidst nature, Mt. IDAY promises an unforgettable experience.",
+    type: DestinationType.nature,
+    images: [
+      "/destinations/damires-1.jpeg",
+      "/destinations/damires-2.jpeg",
+      "/destinations/damires-3.jpeg",
+    ],
+    town: "Janiuay",
+    mapLocation: {
+      lat: 10.89129595131261,
+      lng: 122.43320703506471,
+    },
+    contact: [
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+  },
+  {
+    id: "destination-11",
+    name: "Janiuay Cemetery",
+    about:
+      "Janiuay Cemetery is a one-hectare tract located east of the poblacion bordering between Barangays Aquino-Nobleza and Damu-ong dates back to 1875. Built on top of a hill, it is one of the most beautiful of its kind in the country. This massive, elevated cemetery is one of the links of the Janiuaynons to the past. \n It is made up of three grand arched entrance gates with individual staircases of 21 steps leading to its rightmost entrance, 23 steps going to the main entrance, and 22 steps to its leftmost entrance. It was said that the slabs of stone and limestone blocks used in building the entire cemetery were quarried and hauled by 52 carabaos as far as the town of Dingle a town 27 kilometers away from Janiuay. The area is fenced by steel supported by columns made of stone. \n Common to most Spanish-built structures in Iloilo, egg whites were important ingredients in building this cemetery. When combined with lime and water, the mixture becomes a natural adhesive linking other construction materials together like rocks and bricks. It is also often used as a varnish to cover and protect the surfaces of columns, walls, and facades of man-made structures. \n The octagonal-shaped capilla, partially overgrown with plants and shrubs, is the centerpiece of the cemetery. Artisans from Manila were commissioned to work on its interior. It has lancet-shaped doors and windows. This would have been a place of final vigils and services for the dead. \n The building of the cemetery was under the watchful supervision of an Agustinian friar, Fr. Fernando Llorente, with actual construction being undertaken by Don Placido Marin through forced labor wherein the town folks had to transport heavy materials, such as the stones used in the construction, from its boundaries. In November 20, 1885, the cemetery was finished and inaugurated by Archbishop Payo. \n Over the past 126 years, the Janiuay Catholic Cemetery, like many other historic cemeteries in Iloilo, has suffered from neglect and natural aging. The present administration, under the leadership of Hon. Franklin H. Locsin, recognizes the historical and architectural importance of the site and is lobbying for a major restoration project at the cemetery. The project is dedicated to the preservation of not only the town, but also Iloilo’s irreplaceable historic and cultural treasure for future generations. \n From Iloilo City, to reach the start of the trail in Janiuay, one may take jeepneys that are readily available in Centraline Terminal fronting Christ the King Memorial Park in Jaro, Iloilo City. Air-conditioned vans are also available at the terminal.",
+    type: DestinationType.religious,
+    images: [
+      "/destinations/janiuay-cemetery-1.jpeg",
+      "/destinations/janiuay-cemetery-2.jpeg",
+      "/destinations/janiuay-cemetery-3.jpeg",
+    ],
+    town: "Janiuay",
+    mapLocation: {
+      lat: 10.89129595131261,
+      lng: 122.43320703506471,
+    },
+    contact: [
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+  },
+  {
+    id: "destination-12",
+    name: "Janiuay Church",
+    about:
+      "Janiuay Church The St. Julian of Cuenca Parish Church, commonly called Janiuay Church, is a historic Roman Catholic church located in Janiuay, Iloilo, Philippines. It is dedicated to St. Julian of Cuenca, the patron saint of the town, and is part of the Archdiocese of Jaro. The parish itself was established in 1738, making it one of the older Catholic parishes in the province. \n The original church structure was built using sandstone, limestone, and layered bricks, and was completed around 1770 during the Spanish colonial period. It once had three large bells in its belfry, with the biggest weighing almost a ton. These bells were famous because their sound could be heard from far away. However, the church and its belfry were damaged during World War II, and the original structure was eventually left in ruins. \n Today, a new church building stands beside the ruins of the old Spanish-era church. The old ruins remain an important historical landmark, reminding visitors of the town’s rich religious and cultural history. The church is also situated on a slightly elevated area overlooking the town, giving it a scenic and peaceful atmosphere for worshippers and visitors. \n Aside from being a place of worship, the Janiuay Church is also considered one of the town’s most important heritage sites. It reflects the strong Catholic faith and Spanish colonial influence in the region. Every year, the parish celebrates the feast of St. Julian of Cuenca on January 28, which is an important religious event for the people of Janiuay.",
+    type: DestinationType.religious,
+    images: [
+      "/destinations/janiuay-church-1.jpeg",
+      "/destinations/janiuay-church-2.jpeg",
+    ],
+    town: "Janiuay",
+    mapLocation: {
+      lat: 10.89129595131261,
+      lng: 122.43320703506471,
+    },
+    contact: [
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+  },
 ];
