@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DESTINATION_TYPE_STYLES,
   DestinationType,
@@ -21,7 +23,7 @@ export default function DestinationCard(props: DestinationCardProps) {
   const { name, image, content, onCardClick, type } = props;
 
   return (
-    <Card sx={{ maxWidth: 150 }}>
+    <Card sx={{ maxWidth: 140 }}>
       <CardActionArea onClick={onCardClick}>
         <Box sx={{ position: "relative" }}>
           {typeof image === "string" ? (
