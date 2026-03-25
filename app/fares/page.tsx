@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import BasicSelect from "@/app/components/common/select";
 import TopBar from "@/app/components/common/topbar";
 import { DESTINATIONS } from "@/app/components/constants/destinations";
@@ -9,101 +9,45 @@ import { ORIGINS } from "@/app/components/constants/origins";
 import {
   Stack,
   Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
+  Stepper,
+  Step,
+  StepLabel,
+  Typography,
   Paper,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
-
-const VEHICLE_RATES = {
-  Tricycle: {
-    base: 20,
-    baseKm: 1,
-    perKm: 8,
-  },
-  Jeep: {
-    base: 13,
-    baseKm: 4,
-    perKm: 2.5,
-  },
-  Bus: {
-    base: 12,
-    baseKm: 5,
-    perKm: 2,
-  },
-  Motorcycle: {
-    base: 10,
-    baseKm: 2,
-    perKm: 3,
-  },
-};
-
-export function getDistanceKm(
-  lat1: number,
-  lon1: number,
-  lat2: number,
-  lon2: number,
-) {
-  const R = 6371; // Earth radius km
-  const dLat = ((lat2 - lat1) * Math.PI) / 180;
-  const dLon = ((lon2 - lon1) * Math.PI) / 180;
-
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLon / 2) ** 2;
-
-  return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-}
 
 export default function Fares() {
   const router = useRouter();
 
   const [origin, setOrigin] = useState<any>(null);
   const [destination, setDestination] = useState<any>(null);
-  const [fareResult, setFareResult] = useState<any[]>([]);
 
-  const handleCalculate = () => {
-    if (!origin || !destination) return;
+  const selectedRoute = useMemo(() => {
+    if (!origin || !destination) return null;
 
-    // For ORIGINS, use lat/lng directly; for DESTINATIONS, use mapLocation
-    const originLat = origin.lat || origin.mapLocation?.lat;
-    const originLng = origin.lng || origin.mapLocation?.lng;
+    return destination.fares?.find((route: any) => route.origin === origin.id);
+  }, [origin, destination]);
 
-    const distance = getDistanceKm(
-      originLat,
-      originLng,
-      destination.mapLocation.lat,
-      destination.mapLocation.lng,
+  const totalFare = useMemo(() => {
+    if (!selectedRoute) return null;
+
+    const min = selectedRoute.steps.reduce(
+      (sum: number, step: any) => sum + step.minFare,
+      0,
     );
 
-    const results = Object.entries(VEHICLE_RATES).map(([vehicle, rate]) => {
-      let fare = rate.base;
+    const max = selectedRoute.steps.reduce(
+      (sum: number, step: any) => sum + step.maxFare,
+      0,
+    );
 
-      if (distance > rate.baseKm) {
-        const extraKm = distance - rate.baseKm;
-        fare += extraKm * rate.perKm;
-      }
-
-      return {
-        vehicle,
-        distance: distance.toFixed(2),
-        minFare: rate.base.toFixed(2),
-        maxFare: fare.toFixed(2),
-      };
-    });
-
-    setFareResult(results);
-  };
+    return { min, max };
+  }, [selectedRoute]);
 
   const handleReset = () => {
     setOrigin(null);
     setDestination(null);
-    setFareResult([]);
   };
 
   return (
@@ -111,10 +55,9 @@ export default function Fares() {
       <TopBar label="Fare Guide" onBackClick={() => router.back()} />
 
       <Stack
-        spacing={5}
+        spacing={4}
         px={2}
         sx={{ width: "100%", maxWidth: 600, mx: "auto" }}
-        alignItems={"center"}
       >
         <BasicSelect
           options={ORIGINS}
@@ -130,46 +73,47 @@ export default function Fares() {
           value={destination}
         />
 
-        <Stack direction="row" spacing={2}>
-          <Button
-            variant="contained"
-            color="success"
-            fullWidth
-            onClick={handleCalculate}
-          >
-            Calculate
-          </Button>
+        <Button variant="outlined" onClick={handleReset}>
+          Reset
+        </Button>
 
-          <Button variant="outlined" fullWidth onClick={handleReset}>
-            Reset
-          </Button>
-        </Stack>
+        {selectedRoute && (
+          <Paper sx={{ p: 2 }}>
+            <Typography fontWeight="bold" mb={2}>
+              Route Details
+            </Typography>
 
-        {
-          <Paper elevation={3}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Vehicle</TableCell>
-                  <TableCell>Distance (km)</TableCell>
-                  <TableCell>Min Fare</TableCell>
-                  <TableCell>Max Fare</TableCell>
-                </TableRow>
-              </TableHead>
+            <Stepper orientation="vertical">
+              {selectedRoute.steps.map((step: any, index: number) => (
+                <Step key={index} active>
+                  <StepLabel>
+                    <Stack>
+                      <Typography fontWeight="bold">
+                        {step.from} → {step.to}
+                      </Typography>
 
-              <TableBody>
-                {fareResult.map((row) => (
-                  <TableRow key={row.vehicle}>
-                    <TableCell>{row.vehicle}</TableCell>
-                    <TableCell>{row.distance}</TableCell>
-                    <TableCell>₱{row.minFare}</TableCell>
-                    <TableCell>₱{row.maxFare}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                      <Typography variant="body2">
+                        {step.vehicle} • ₱{step.minFare} - ₱{step.maxFare}
+                      </Typography>
+                    </Stack>
+                  </StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+
+            {totalFare && (
+              <Typography mt={2} fontWeight="bold" color="green">
+                Total Fare: ₱{totalFare.min} - ₱{totalFare.max}
+              </Typography>
+            )}
           </Paper>
-        }
+        )}
+
+        {origin && destination && !selectedRoute && (
+          <Typography color="text.secondary">
+            No available route for this origin.
+          </Typography>
+        )}
       </Stack>
     </Stack>
   );
