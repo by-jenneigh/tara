@@ -55,7 +55,7 @@ export default function Destinations() {
   }, [searchValue, selectedType, selectedTown]);
 
   return (
-    <Stack className="pt-12 pb-30" alignItems="center">
+    <Stack className="pb-30" alignItems="center">
       <Stack sx={{ width: "100%", maxWidth: 900 }}>
         <TopBar label="Destinations" onBackClick={() => router.back()} />
 
@@ -67,7 +67,6 @@ export default function Destinations() {
             position: "sticky",
             top: 0,
             zIndex: 10,
-            bgcolor: "#d1f3c5",
             pt: 2,
             pb: 2,
           }}
