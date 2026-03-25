@@ -27,6 +27,34 @@ export const DESTINATIONS = [
         hotline: "Test Facebook Account",
       },
     ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Maasin",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Maasin",
+            to: "The Grotto of Our Lady of Lourdes at Pait Spring",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+    ],
   },
   {
     id: "destination-2",
