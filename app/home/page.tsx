@@ -6,18 +6,33 @@ import { DESTINATIONS } from "@/app/components/constants/destinations";
 import { FEATURES } from "@/app/components/constants/features";
 import { Grid, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+  const [searchValue, setSearchValue] = useState("");
 
   return (
     <Stack alignItems={"center"}>
       <Stack alignContent={"center"} mb={5}>
-        <Typography variant="h6" color="black" align="center">
+        <Typography
+          variant="h6"
+          color="white"
+          align="center"
+          fontWeight={"bold"}
+        >
           Explore the 3rd District of Iloilo
         </Typography>
 
-        <Search options={DESTINATIONS} />
+        <Search
+          options={DESTINATIONS}
+          onInputChange={setSearchValue}
+          onSelect={(destination) => {
+            if (destination) {
+              router.push(`/destinations/${destination.id}`);
+            }
+          }}
+        />
       </Stack>
 
       <Grid
@@ -42,7 +57,7 @@ export default function Home() {
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        <Typography color="black" variant="body1">
+        <Typography color="white" variant="h6" fontWeight={"bold"}>
           Featured Destinations
         </Typography>
         {DESTINATIONS.slice(0, 2).map((destination, idx) => (
