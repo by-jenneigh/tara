@@ -37,7 +37,8 @@ export default function Search({
         renderInput={(params) => (
           <TextField
             {...params}
-            variant="filled"
+            sx={{ backgroundColor: "white" }}
+            variant="outlined"
             margin="normal"
             color="success"
             label="Search a destination"
