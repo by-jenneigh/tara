@@ -150,7 +150,9 @@ export default function Destination({
               size="small"
               fullWidth
               sx={{ borderColor: "gray", color: "gray", height: 40 }}
-              onClick={() => router.push("/fares")}
+              onClick={() =>
+                router.push(`/fares?destination=${DESTINATION_DETAILS?.id}`)
+              }
             >
               Check Fare
             </Button>

@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import BasicSelect from "@/app/components/common/select";
 import TopBar from "@/app/components/common/topbar";
 import { DESTINATIONS } from "@/app/components/constants/destinations";
@@ -15,13 +16,16 @@ import {
   Typography,
   Paper,
 } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Fares() {
   const router = useRouter();
 
   const [origin, setOrigin] = useState<any>(null);
   const [destination, setDestination] = useState<any>(null);
+
+  const searchParams = useSearchParams();
+  const destinationParam = searchParams.get("destination");
 
   const selectedRoute = useMemo(() => {
     if (!origin || !destination) return null;
@@ -49,6 +53,16 @@ export default function Fares() {
     setOrigin(null);
     setDestination(null);
   };
+
+  useEffect(() => {
+    if (!destinationParam) return;
+
+    const match = DESTINATIONS.find((dest) => dest.id === destinationParam);
+
+    if (match) {
+      setDestination(match);
+    }
+  }, [destinationParam]);
 
   return (
     <Stack spacing={3} mt={5}>
