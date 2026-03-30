@@ -23,7 +23,7 @@ export default function DestinationCard(props: DestinationCardProps) {
   const { name, image, content, onCardClick, type } = props;
 
   return (
-    <Card sx={{ maxWidth: 140 }}>
+    <Card sx={{ maxWidth: 140, borderRadius: 4 }}>
       <CardActionArea onClick={onCardClick}>
         <Box sx={{ position: "relative" }}>
           {typeof image === "string" ? (
