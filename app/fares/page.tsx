@@ -73,7 +73,11 @@ export default function Fares() {
           value={destination}
         />
 
-        <Button variant="outlined" onClick={handleReset}>
+        <Button
+          variant="outlined"
+          sx={{ backgroundColor: "green", color: "white" }}
+          onClick={handleReset}
+        >
           Reset
         </Button>
 
