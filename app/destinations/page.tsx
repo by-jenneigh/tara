@@ -67,7 +67,7 @@ export default function Destinations() {
             position: "sticky",
             top: 0,
             zIndex: 10,
-            pt: 2,
+            pt: 5,
             pb: 2,
           }}
         >
@@ -82,7 +82,7 @@ export default function Destinations() {
           />
 
           <IconButton onClick={handleOpenFilter}>
-            <FilterListIcon />
+            <FilterListIcon sx={{ color: "white" }} />
           </IconButton>
         </Stack>
 
