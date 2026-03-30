@@ -6,23 +6,15 @@ export const metadata: Metadata = {
   description: "Travel and Route Assistance",
 };
 
-export default function Layout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      className="flex items-center justify-center font-sans"
-      style={{
-        backgroundImage: "url('/bg-1.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        minHeight: "100vh",
-      }}
-    >
-      <div className="flex w-full flex-col items-center justify-center pt-12 pb-30 px-16  sm:items-center">
+    <div className="relative min-h-screen font-sans">
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/bg-5.png')" }}
+      />
+      <div className="absolute inset-0 bg-black/25" />
+      <div className="relative flex flex-col items-center justify-center pt-12 pb-30 px-16">
         {children}
         <Navigation />
       </div>

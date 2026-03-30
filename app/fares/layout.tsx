@@ -12,12 +12,16 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex items-center bg-zinc-50 font-sans dark:bg-[#d1f3c5]">
-      <main className="flex w-full min-h-screen flex-col items-center py-10 px-10 bg-[#d1f3c5] dark:bg-[#d1f3c5] sm:items-center">
+    <div className="relative min-h-screen font-sans">
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/bg-5.png')" }}
+      />
+      <div className="absolute inset-0 bg-black/25" />
+      <div className="relative flex flex-col items-center justify-center pt-12 pb-30 px-16">
         {children}
-      </main>
-
-      <Navigation />
+        <Navigation />
+      </div>
     </div>
   );
 }
