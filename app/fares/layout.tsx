@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navigation from "@/app/components/common/navigation";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "TARA",
@@ -19,7 +20,7 @@ export default function Layout({
       />
       <div className="absolute inset-0 bg-black/25" />
       <div className="relative flex flex-col items-center justify-center pt-12 pb-30 px-16">
-        {children}
+        <Suspense>{children}</Suspense>
         <Navigation />
       </div>
     </div>
