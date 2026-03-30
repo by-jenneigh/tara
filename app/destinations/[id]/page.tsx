@@ -124,7 +124,7 @@ export default function Destination({
               fullWidth
               onClick={() =>
                 router.push(
-                  `/navigation?lat=${DESTINATION_DETAILS?.mapLocation.lat}&lng=${DESTINATION_DETAILS?.mapLocation.lng}`,
+                  `/navigation?lat=${DESTINATION_DETAILS?.mapLocation.lat}&lng=${DESTINATION_DETAILS?.mapLocation.lng}&fromCurrentPosition=${true}`,
                 )
               }
             >
