@@ -33,7 +33,7 @@ export default function RootLayout({
             style={{ backgroundImage: "url('/bg-5.png')" }}
           />
           <div className="absolute inset-0 bg-black/25" />
-          <div className="relative flex flex-col items-center justify-center pt-12 pb-30 px-16">
+          <div className="relative flex flex-col items-center justify-center px-16">
             {children}
           </div>
         </div>
