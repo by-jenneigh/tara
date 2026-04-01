@@ -3,6 +3,7 @@ export enum DestinationType {
   recreational = "Recreational",
   historical = "Historical",
   nature = "Nature",
+  food = "Food",
 }
 
 export const DESTINATION_TYPE_STYLES: Record<
@@ -15,6 +16,7 @@ export const DESTINATION_TYPE_STYLES: Record<
   [DestinationType.recreational]: { color: "info" },
   [DestinationType.historical]: { color: "warning" },
   [DestinationType.nature]: { color: "success" },
+  [DestinationType.food]: { color: "error" },
 };
 
 export type Destination = {
