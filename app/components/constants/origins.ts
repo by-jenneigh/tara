@@ -23,4 +23,20 @@ export const ORIGINS = [
       lng: 122.5575,
     },
   },
+  // {
+  //   id: "sta-barbara",
+  //   name: "Sta. Barbara",
+  //   mapLocation: {
+  //     lat: 10.769884,
+  //     lng: 122.5032132,
+  //   },
+  // },
+  // {
+  //   id: "maasin",
+  //   name: "Maasin",
+  //   mapLocation: {
+  //     lat: 10.769884,
+  //     lng: 122.5032132,
+  //   },
+  // },
 ];
