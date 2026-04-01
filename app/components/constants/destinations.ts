@@ -1,6 +1,7 @@
 import { DestinationType } from "@/app/components/types/destinations-type";
 
 export const DESTINATIONS = [
+  // MAASIN
   {
     id: "destination-1",
     name: "The Grotto of Our Lady of Lourdes at Pait Spring",
@@ -578,6 +579,8 @@ export const DESTINATIONS = [
       },
     ],
   },
+
+  // JANIUAY
   {
     id: "destination-8",
     name: "Igbiating Falls",
@@ -591,13 +594,79 @@ export const DESTINATIONS = [
     ],
     town: "Janiuay",
     mapLocation: {
-      lat: 10.89129595131261,
-      lng: 122.43320703506471,
+      lat: 11.0138111,
+      lng: 122.3402111,
     },
     contact: [
       {
         entity: "Facebook",
         hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Igbiating Falls",
+            vehicle: "Motorcycle",
+            minFare: 200,
+            maxFare: 250,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Igbiating Falls",
+            vehicle: "Motorcycle",
+            minFare: 200,
+            maxFare: 250,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Igbiating Falls",
+            vehicle: "Motorcycle",
+            minFare: 200,
+            maxFare: 250,
+          },
+        ],
       },
     ],
   },
@@ -614,13 +683,107 @@ export const DESTINATIONS = [
     ],
     town: "Janiuay",
     mapLocation: {
-      lat: 10.89129595131261,
-      lng: 122.43320703506471,
+      lat: 10.961054,
+      lng: 122.514366,
     },
     contact: [
       {
         entity: "Facebook",
         hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Bangga Damires Hills Farm and Spa",
+            vehicle: "Jeepney",
+            minFare: 20,
+            maxFare: 25,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Bangga Damires Hills Farm and Spa",
+            vehicle: "Tricycle",
+            minFare: 50,
+            maxFare: 70,
+          },
+          {
+            from: "Bangga Damires Hills Farm and Spa",
+            to: "Damires Hills Farm and Spa",
+            vehicle: "Motorcycle",
+            minFare: 50,
+            maxFare: 70,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Bangga Damires Hills Farm and Spa",
+            vehicle: "Tricycle",
+            minFare: 50,
+            maxFare: 70,
+          },
+          {
+            from: "Bangga Damires Hills Farm and Spa",
+            to: "Damires Hills Farm and Spa",
+            vehicle: "Motorcycle",
+            minFare: 50,
+            maxFare: 70,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Bangga Damires Hills Farm and Spa",
+            vehicle: "Tricycle",
+            minFare: 50,
+            maxFare: 70,
+          },
+          {
+            from: "Bangga Damires Hills Farm and Spa",
+            to: "Damires Hills Farm and Spa",
+            vehicle: "Motorcycle",
+            minFare: 50,
+            maxFare: 70,
+          },
+        ],
       },
     ],
   },
@@ -637,13 +800,79 @@ export const DESTINATIONS = [
     ],
     town: "Janiuay",
     mapLocation: {
-      lat: 10.89129595131261,
-      lng: 122.43320703506471,
+      lat: 11.0319254,
+      lng: 122.4240269,
     },
     contact: [
       {
         entity: "Facebook",
         hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Mt. IDAY",
+            vehicle: "Motorcycle",
+            minFare: 100,
+            maxFare: 120,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Mt. IDAY",
+            vehicle: "Motorcycle",
+            minFare: 100,
+            maxFare: 120,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Mt. IDAY",
+            vehicle: "Motorcycle",
+            minFare: 100,
+            maxFare: 120,
+          },
+        ],
       },
     ],
   },
@@ -669,6 +898,72 @@ export const DESTINATIONS = [
         hotline: "Test Facebook Account",
       },
     ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Janiuay Cemetery",
+            vehicle: "Motorcycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Janiuay Cemetery",
+            vehicle: "Motorcycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Public Market",
+            to: "Janiuay Cemetery",
+            vehicle: "Motorcycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+    ],
   },
   {
     id: "destination-12",
@@ -682,13 +977,646 @@ export const DESTINATIONS = [
     ],
     town: "Janiuay",
     mapLocation: {
-      lat: 10.89129595131261,
-      lng: 122.43320703506471,
+      lat: 11.032088,
+      lng: 122.3441984,
     },
     contact: [
       {
         entity: "Facebook",
         hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+        ],
+      },
+    ],
+  },
+  // {
+  //   id: "destination-13",
+  //   name: "Suarez Siomai Food Hub",
+  //   about:
+  //     "Suarez Siomai Food Hub is a popular dining destination in Abordo St, Janiuay, Philippines, 5034. It has garnered a 4.2 Google rating and is recognized as the 6th best restaurant in the area, with 36 reviews and 18 detailed photos. The restaurant offers a variety of food options and is known for its quality service. To contact Suarez Siomai Food Hub, you can reach them at 0928 363 4514. The restaurant is categorized under Restaurants and mobile food service activities, and it has a 4.1 Cybo Score.",
+  //   type: DestinationType.food,
+  //   images: [
+  //     "/destinations/suarez-2.jpg",
+  //     "/destinations/suarez-3.jpg",
+  //     "/destinations/suarez-4.jpg",
+  //     "/destinations/suarez-1.webp",
+  //   ],
+  //   town: "Janiuay",
+  //   mapLocation: {
+  //     lat: 10.950208,
+  //     lng: 122.4881084,
+  //   },
+  //   contact: [
+  //     {
+  //       entity: "Facebook",
+  //       hotline: "Test Facebook Account",
+  //     },
+  //   ],
+  //   fares: [
+  //     {
+  //       origin: "airport",
+  //       steps: [
+  //         {
+  //           from: "Iloilo International Airport",
+  //           to: "Sta. Barbara",
+  //           vehicle: "Tricyle",
+  //           minFare: 25,
+  //           maxFare: 30,
+  //         },
+  //         {
+  //           from: "Sta. Barbara",
+  //           to: "Janiuay Poblacion",
+  //           vehicle: "Jeepney",
+  //           minFare: 30,
+  //           maxFare: 35,
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       origin: "terminal-1",
+  //       steps: [
+  //         {
+  //           from: "Robinson's Pavia Terminal",
+  //           to: "Janiuay Poblacion",
+  //           vehicle: "Jeepney",
+  //           minFare: 45,
+  //           maxFare: 50,
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       origin: "terminal-2",
+  //       steps: [
+  //         {
+  //           from: "Christ The King Pavia Terminal",
+  //           to: "Janiuay Poblacion",
+  //           vehicle: "Jeepney",
+  //           minFare: 45,
+  //           maxFare: 50,
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
+
+  // CABATUAN
+  {
+    id: "destination-14",
+    name: "Balic Hill",
+    about:
+      "Balic Hill is located about 1.5 kilometers northeast of the town poblacion of Cabatuan, in Barangay Balic. Balic Hill is considered the “Mt. Calvary” of Cabatuan because it is the site where the Way of the Cross (Via Crucis) is held every Good Friday during Holy Week. During this religious event, thousands of Roman Catholic devotees from Cabatuan and nearby towns gather and participate in the prayerful reenactment of the Stations of the Cross as they climb the hill. \n The hill serves not only as a religious pilgrimage site but also as a place of reflection and devotion for the community. Its elevated location provides a peaceful environment where visitors can pray while overlooking parts of the surrounding countryside of Cabatuan.",
+    type: DestinationType.religious,
+    images: ["/destinations/balic-2.jpg", "/destinations/balic-1.webp"],
+    town: "Cabatuan",
+    mapLocation: {
+      lat: 10.8819947,
+      lng: 122.4820691,
+    },
+    contact: [
+      {
+        entity: "Mobile",
+        hotline: "09653413256",
+      },
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Cabatuan Plaza",
+            to: "Balic Hill",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 20,
+            maxFare: 25,
+          },
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "E-bus",
+            minFare: 37,
+            maxFare: 41,
+          },
+          {
+            from: "Cabatuan Plaza",
+            to: "Balic Hill",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Cabatuan Plaza",
+            to: "Balic Hill",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "destination-15",
+    name: "Paklang",
+    about:
+      "Paklang, the Banana Leaf Arch, is associated with Tinuom, the famous delicacy in town, the Municipality Festival, and the symbol of industry, which is the way of life of the natives of Cabatuan. \n The decorative arch often marks the entrance to special events or festivals, adding a festive touch to the surroundings. Its vibrant green color and unique design make it a popular spot for photographs and a charming representation of Cabtuan’s connection to its agricultural roots. The Banana Leaf Arch reflects the town’s cultural identity and community spirit, welcoming both locals and visitors alike.",
+    type: DestinationType.historical,
+    images: ["/destinations/paklang-2.jpg", "/destinations/paklang-1.jpg"],
+    town: "Cabatuan",
+    mapLocation: {
+      lat: 10.8819947,
+      lng: 122.4820691,
+    },
+    contact: [
+      {
+        entity: "Mobile",
+        hotline: "09653413256",
+      },
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 20,
+            maxFare: 25,
+          },
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "E-bus",
+            minFare: 37,
+            maxFare: 41,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "destination-16",
+    name: "San Nicolas de Tolentino Parish",
+    about:
+      "San Nicolas de Tolentino Parish Church is one of the most historically significant and architecturally impressive churches in the province of Iloilo. Built in the Neo-Classical architectural style, the church is known for its grand structure, balanced proportions, and elegant design that reflects the influence of Spanish colonial architecture in the Philippines. Its massive brick construction, detailed façade, and imposing presence make it one of the most remarkable religious landmarks in Western Visayas. \n The first parochial church of Cabatuan was completed in 1732, the same year the town became an independent parish under the patronage of Nicholas of Tolentino, the beloved patron saint of the community. From its early years, the church served not only as a place of worship but also as the spiritual and social center of the town. Through the efforts of missionaries and the devotion of the local people, the parish church gradually developed into an important religious institution that guided the faith and traditions of the residents of Cabatuan. \n During its time, the church was widely admired for its beauty and grandeur. In fact, the local publication El Eco de Panay once described it as the “Model of Temples,” highlighting its impressive architectural design and religious importance. The church was also recognized as the largest brick structure in Western Visayas, a testament to the remarkable craftsmanship and engineering of the period. Its thick brick walls, large columns, and spacious interior demonstrated the dedication and skill of the builders who worked to create a structure that would stand for generations. \n Beyond its architectural beauty, the church continues to hold deep cultural and spiritual significance for the people of Cabatuan. It remains the center of religious celebrations, particularly the annual feast of St. Nicholas of Tolentino, where devotees gather to honor their patron saint through prayers, processions, and community festivities. Today, the San Nicolas de Tolentino Parish Church stands not only as a symbol of faith but also as a living historical monument that reflects the rich heritage, devotion, and identity of the people of Cabatuan.",
+    type: DestinationType.religious,
+    images: ["/destinations/paklang-2.jpg", "/destinations/paklang-1.jpg"],
+    town: "Cabatuan",
+    mapLocation: {
+      lat: 10.8793733,
+      lng: 122.4787191,
+    },
+    contact: [
+      {
+        entity: "Mobile",
+        hotline: "09653413256",
+      },
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 20,
+            maxFare: 25,
+          },
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "E-bus",
+            minFare: 37,
+            maxFare: 41,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "destination-17",
+    name: "Pamul-ogan Hill Shrine",
+    about:
+      "Pamul-ogan Hill Shrine located in Barangay Pamul-ogan in Cabatuan, is one of the most important religious and historical sites in the town. The shrine has long been a place of devotion and reflection, especially during Holy Week, when many Roman Catholic devotees visit the hill to pray, meditate, and take part in religious activities. Because of its spiritual significance and peaceful atmosphere, the site attracts not only local residents but also pilgrims and visitors from nearby towns. \n Pamul-ogan Hill Shrine located in Barangay Pamul-ogan in Cabatuan, is one of the most important religious and historical sites in the town. The shrine has long been a place of devotion and reflection, especially during Holy Week, when many Roman Catholic devotees visit the hill to pray, meditate, and take part in religious activities. Because of its spiritual significance and peaceful atmosphere, the site attracts not only local residents but also pilgrims and visitors from nearby towns. \n Aside from its historical importance, Pamul-ogan Hill is also known for its beautiful view. From the top of the hill, visitors can clearly see the poblacion or town center of Cabatuan, as well as the nearby Iloilo International Airport. The scenic landscape, combined with its historical and religious value, makes the Pamul-ogan Hill Shrine a meaningful landmark that reflects the deep faith, history, and culture of the people of Cabatuan.",
+    type: DestinationType.religious,
+    images: ["/destinations/pamulogan-1.jpg", "/destinations/pamulogan-2.jpg"],
+    town: "Cabatuan",
+    mapLocation: {
+      lat: 10.8819947,
+      lng: 122.4820691,
+    },
+    contact: [
+      {
+        entity: "Mobile",
+        hotline: "09653413256",
+      },
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Bangga Tabucan",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Bangga Tabucan",
+            to: "Pamul-ogan Hill Shrine",
+            vehicle: "Tricycle",
+            minFare: 30,
+            maxFare: 40,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Bangga Tabucan",
+            vehicle: "Jeepney",
+            minFare: 20,
+            maxFare: 25,
+          },
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Bangga Tabucan",
+            vehicle: "E-bus",
+            minFare: 37,
+            maxFare: 41,
+          },
+          {
+            from: "Bangga Tabucan",
+            to: "Pamul-ogan Hill Shrine",
+            vehicle: "Tricycle",
+            minFare: 30,
+            maxFare: 40,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Bangga Tabucan",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Bangga Tabucan",
+            to: "Pamul-ogan Hill Shrine",
+            vehicle: "Tricycle",
+            minFare: 30,
+            maxFare: 40,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "destination-18",
+    name: "Great Valley Resort",
+    about:
+      "Great Valley Resort is a relaxing resort located in Barangay Anuang, Cabatuan. The resort is known as a quiet and refreshing destination where visitors can enjoy nature, swimming, and bonding with family and friends. Because it is surrounded by greenery and open spaces, the place offers a peaceful atmosphere that is perfect for people who want to take a break from busy city life. \n Great Valley Resort has become a popular place for family outings, small celebrations, team-building activities, and weekend relaxation. The resort offers facilities such as swimming pools, cottages, open garden areas, and spaces for gatherings or events. Many visitors appreciate the calm environment where they can relax, swim, and spend quality time with loved ones. \n The resort is also conveniently located within the municipality of Cabatuan, which is about 24 kilometers from Iloilo City, making it accessible for travelers and local tourists. Because of its peaceful location and natural surroundings, Great Valley Resort continues to attract guests looking for a simple yet enjoyable getaway in Iloilo.",
+    type: DestinationType.recreational,
+    images: [
+      "/destinations/gvalley-3.jpg",
+      "/destinations/gvalley-1.webp",
+      "/destinations/gvalley-2.webp",
+    ],
+    town: "Cabatuan",
+    mapLocation: {
+      lat: 10.8957273,
+      lng: 122.5011089,
+    },
+    contact: [
+      {
+        entity: "Mobile",
+        hotline: "09653413256",
+      },
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Cabatuan Plaza",
+            to: "Great Valley Resort",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 20,
+            maxFare: 25,
+          },
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "E-bus",
+            minFare: 37,
+            maxFare: 41,
+          },
+          {
+            from: "Cabatuan Plaza",
+            to: "Great Valley Resort",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Cabatuan Plaza",
+            to: "Great Valley Resort",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "destination-19",
+    name: "David Inland Resort",
+    about:
+      "David Inland Resort is a leisure resort located in Banga Cloma, Barangay Tabucan in the municipality of Cabatuan. It is known as a relaxing destination where families, friends, and visitors can enjoy swimming, outdoor recreation, and bonding activities in a peaceful environment. \n The resort offers facilities such as swimming pools, cottages, open spaces, and areas for gatherings, making it a popular venue for family outings, birthdays, reunions, and small celebrations. Because it is located away from the busy urban areas, guests can experience a quiet atmosphere surrounded by nature and fresh air. \n Many visitors choose David Inland Resort as a place to unwind and spend quality time with loved ones. Its location in the countryside of Cabatuan highlights the natural beauty and calm lifestyle of the area while still being accessible from nearby towns and Iloilo City. \n ",
+    type: DestinationType.recreational,
+    images: ["/destinations/david-1.webp", "/destinations/david-2.webp"],
+    town: "Cabatuan",
+    mapLocation: {
+      lat: 10.7014653,
+      lng: 122.5382434,
+    },
+    contact: [
+      {
+        entity: "Mobile",
+        hotline: "09653413256",
+      },
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Bangga Tabucan",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Bangga Tabucan",
+            vehicle: "Jeepney",
+            minFare: 20,
+            maxFare: 25,
+          },
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Bangga Tabucan",
+            vehicle: "E-bus",
+            minFare: 37,
+            maxFare: 41,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Bangga Tabucan",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+        ],
       },
     ],
   },
