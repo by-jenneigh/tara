@@ -40,13 +40,51 @@ export const DESTINATIONS = [
           },
           {
             from: "Sta. Barbara",
-            to: "Maasin",
+            to: "Maasin Poblacion",
             vehicle: "Jeepney",
             minFare: 30,
             maxFare: 35,
           },
           {
-            from: "Maasin",
+            from: "Maasin Poblacion",
+            to: "The Grotto of Our Lady of Lourdes at Pait Spring",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "The Grotto of Our Lady of Lourdes at Pait Spring",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+          {
+            from: "Maasin Poblacion",
             to: "The Grotto of Our Lady of Lourdes at Pait Spring",
             vehicle: "Tricycle",
             minFare: 15,
@@ -69,13 +107,79 @@ export const DESTINATIONS = [
     ],
     town: "Maasin",
     mapLocation: {
-      lat: 10.8994988,
-      lng: 122.4187922,
+      lat: 10.8994836,
+      lng: 122.4346714,
     },
     contact: [
       {
         entity: "Facebook",
         hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Villa Teresita Resthauz Bamboo Resort",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Villa Teresita Resthauz Bamboo Resort",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Villa Teresita Resthauz Bamboo Resort",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
       },
     ],
   },
@@ -92,13 +196,79 @@ export const DESTINATIONS = [
     ],
     town: "Maasin",
     mapLocation: {
-      lat: 10.89129595131261,
-      lng: 122.43320703506471,
+      lat: 10.8955633,
+      lng: 122.3928772,
     },
     contact: [
       {
         entity: "Facebook",
         hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Dam site and Mahogany Park",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Dam site and Mahogany Park",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Dam site and Mahogany Park",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
       },
     ],
   },
@@ -115,13 +285,79 @@ export const DESTINATIONS = [
     ],
     town: "Maasin",
     mapLocation: {
-      lat: 10.949046402622345,
-      lng: 122.50236868771027,
+      lat: 10.8962419,
+      lng: 122.4449508,
     },
     contact: [
       {
         entity: "Facebook",
         hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Bamview Bistro",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Bamview Bistro",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Bamview Bistro",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
       },
     ],
   },
@@ -134,13 +370,58 @@ export const DESTINATIONS = [
     images: ["/placeholder_image.jpg"],
     town: "Maasin",
     mapLocation: {
-      lat: 10.879732926155558,
-      lng: 122.48089313528908,
+      lat: 10.8904827,
+      lng: 122.4308806,
     },
     contact: [
       {
         entity: "Facebook",
         hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+        ],
       },
     ],
   },
@@ -153,13 +434,79 @@ export const DESTINATIONS = [
     images: ["/placeholder_image.jpg"],
     town: "Maasin",
     mapLocation: {
-      lat: 10.89129595131261,
-      lng: 122.43320703506471,
+      lat: 10.8973322,
+      lng: 122.4114726,
     },
     contact: [
       {
         entity: "Facebook",
         hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Francisco's Farm Resto and Grill",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Francisco's Farm Resto and Grill",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+          {
+            from: "Maasin Poblacion",
+            to: "Francisco's Farm Resto and Grill",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+        ],
       },
     ],
   },
@@ -176,13 +523,58 @@ export const DESTINATIONS = [
     ],
     town: "Maasin",
     mapLocation: {
-      lat: 10.89129595131261,
-      lng: 122.43320703506471,
+      lat: 10.8926883,
+      lng: 122.4154453,
     },
     contact: [
       {
         entity: "Facebook",
         hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Maasin Poblacion",
+            vehicle: "Jeepney",
+            minFare: 40,
+            maxFare: 50,
+          },
+        ],
       },
     ],
   },
