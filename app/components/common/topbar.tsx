@@ -14,7 +14,7 @@ export default function TopBar(props: TopBarProps) {
   const { label, onBackClick } = props;
 
   return (
-    <Box sx={{ flexGrow: 1, width: "100%" }} mb={5}>
+    <Box sx={{ flexGrow: 1, width: "100%", minHeight: 50 }}>
       <AppBar
         color="default"
         enableColorOnDark

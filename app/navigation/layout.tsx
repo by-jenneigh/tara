@@ -14,7 +14,7 @@ export default function NavigationLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Suspense>
         <div className="flex-1">{children}</div>
         <Navigation />

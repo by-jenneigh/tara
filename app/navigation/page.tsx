@@ -19,7 +19,7 @@ export default function Navigation() {
   const router = useRouter();
 
   return (
-    <Stack alignItems={"center"}>
+    <Stack alignItems={"center"} className="w-full">
       <TopBar label="Navigation" onBackClick={() => router.back()} />
 
       <Map

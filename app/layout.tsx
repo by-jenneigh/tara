@@ -27,16 +27,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="relative min-h-screen font-sans">
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/bg-5.png')" }}
-          />
-          <div className="absolute inset-0 bg-black/25" />
-          <div className="relative flex flex-col items-center justify-center px-16">
-            {children}
-          </div>
-        </div>
+        {children}
       </body>
     </html>
   );
