@@ -33,6 +33,42 @@ export default function Fares() {
     return destination.fares?.find((route: any) => route.origin === origin.id);
   }, [origin, destination]);
 
+  const mergedSteps = useMemo(() => {
+    if (!selectedRoute) return [];
+
+    const grouped = selectedRoute.steps.reduce(
+      (acc: Map<string, any>, step: any) => {
+        const key = `${step.from}|${step.to}`;
+        const existing = acc.get(key);
+
+        if (existing) {
+          existing.options.push({
+            vehicle: step.vehicle,
+            minFare: step.minFare,
+            maxFare: step.maxFare,
+          });
+        } else {
+          acc.set(key, {
+            from: step.from,
+            to: step.to,
+            options: [
+              {
+                vehicle: step.vehicle,
+                minFare: step.minFare,
+                maxFare: step.maxFare,
+              },
+            ],
+          });
+        }
+
+        return acc;
+      },
+      new Map<string, any>(),
+    );
+
+    return Array.from(grouped.values());
+  }, [selectedRoute]);
+
   const totalFare = useMemo(() => {
     if (!selectedRoute) return null;
 
@@ -102,7 +138,7 @@ export default function Fares() {
             </Typography>
 
             <Stepper orientation="vertical">
-              {selectedRoute.steps.map((step: any, index: number) => (
+              {mergedSteps.map((step: any, index: number) => (
                 <Step key={index} active>
                   <StepLabel>
                     <Stack>
@@ -110,9 +146,12 @@ export default function Fares() {
                         {step.from} → {step.to}
                       </Typography>
 
-                      <Typography variant="body2">
-                        {step.vehicle} • ₱{step.minFare} - ₱{step.maxFare}
-                      </Typography>
+                      {step.options.map((option: any, optionIndex: number) => (
+                        <Typography key={optionIndex} variant="body2">
+                          {option.vehicle} • ₱{option.minFare} - ₱
+                          {option.maxFare}
+                        </Typography>
+                      ))}
                     </Stack>
                   </StepLabel>
                 </Step>
