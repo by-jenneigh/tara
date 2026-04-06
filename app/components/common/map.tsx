@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -5,6 +7,7 @@ import {
   TileLayer,
   Marker,
   Polyline,
+  Tooltip,
   useMap,
   useMapEvents,
 } from "react-leaflet";
@@ -16,12 +19,29 @@ const defaultCenter: [number, number] = [14.5995, 120.9842];
 
 function FollowUser({ position }: { position: [number, number] | null }) {
   const map = useMap();
+  const [lastPosition, setLastPosition] = useState<[number, number] | null>(
+    null,
+  );
 
   useEffect(() => {
-    if (position) {
+    if (!position) return;
+
+    if (!lastPosition) {
       map.setView(position, 16);
+      setLastPosition(position);
+      return;
     }
-  }, [position, map]);
+
+    const distance = map.distance(lastPosition, position);
+
+    if (distance > 10) {
+      map.flyTo(position, map.getZoom(), {
+        duration: 0.5,
+      });
+
+      setLastPosition(position);
+    }
+  }, [position, lastPosition, map]);
 
   return null;
 }
@@ -41,7 +61,9 @@ export default function Map({
   const [userLocation, setUserLocation] = useState<[number, number] | null>(
     null,
   );
-  const [fare, setFare] = useState<number | null>(null);
+
+  const [distance, setDistance] = useState<number | null>(null);
+  const [duration, setDuration] = useState<number | null>(null);
 
   useEffect(() => {
     if (!destinationLat || !destinationLng) return;
@@ -49,7 +71,8 @@ export default function Map({
     if (!fromCurrentPosition) {
       setStart(null);
       setRoute([]);
-      setFare(null);
+      setDistance(null);
+      setDuration(null);
     }
 
     if (fromCurrentPosition) {
@@ -90,17 +113,19 @@ export default function Map({
       );
       const data = await res.json();
 
-      const coordinates = data.routes[0].geometry.coordinates.map(
+      const routeData = data.routes[0];
+
+      const coordinates = routeData.geometry.coordinates.map(
         (c: [number, number]) => [c[1], c[0]],
       );
 
-      const distanceMeters = data.routes[0].distance;
-      const distanceKm = distanceMeters / 1000;
+      const distanceKm = routeData.distance / 1000;
+      setDistance(Number(distanceKm.toFixed(2)));
 
-      const computedFare = 13 + Math.max(0, distanceKm - 4) * 1.5;
+      const durationMin = routeData.duration / 60;
+      setDuration(Math.round(durationMin));
 
       setRoute(coordinates);
-      setFare(Number(computedFare.toFixed(2)));
     };
 
     fetchRoute();
@@ -148,8 +173,11 @@ export default function Map({
                 border:3px solid white;
               "></div>`,
             })}
-          />
+          >
+            <Tooltip>Start</Tooltip>
+          </Marker>
         )}
+
         {end && (
           <Marker
             position={end}
@@ -163,13 +191,20 @@ export default function Map({
                 border:3px solid white;
               "></div>`,
             })}
-          />
+          >
+            <Tooltip>Destination</Tooltip>
+          </Marker>
         )}
+
         {route.length > 0 && (
           <Polyline
             positions={route}
             pathOptions={{ color: "green", weight: 5 }}
-          />
+          >
+            <Tooltip sticky>
+              {distance} km • {duration} min
+            </Tooltip>
+          </Polyline>
         )}
 
         {userLocation && (
@@ -185,7 +220,9 @@ export default function Map({
                 border:3px solid white;
               "></div>`,
             })}
-          />
+          >
+            <Tooltip>You</Tooltip>
+          </Marker>
         )}
       </MapContainer>
 
@@ -220,6 +257,34 @@ export default function Map({
         </Box>
       )}
 
+      {distance !== null && duration !== null && (
+        <Box
+          sx={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            bottom: 20,
+            zIndex: 1000,
+            bgcolor: "white",
+            px: 3,
+            py: 2,
+            borderRadius: "12px",
+            boxShadow: 4,
+            minWidth: 220,
+            textAlign: "center",
+            color: "black",
+            mb: 5,
+          }}
+        >
+          <div>
+            <b>Distance:</b> {distance} km
+          </div>
+          <div>
+            <b>Duration:</b> {duration} min
+          </div>
+        </Box>
+      )}
+
       {(start || end) && (
         <Button
           variant="contained"
@@ -228,17 +293,14 @@ export default function Map({
             setStart(null);
             setEnd(null);
             setRoute([]);
-            setFare(null);
+            setDistance(null);
+            setDuration(null);
           }}
           sx={{
             position: "absolute",
-            right: 5,
-            transform: "translateX(-50%)",
-            top: 60,
+            right: 10,
+            top: 20,
             zIndex: 1000,
-            px: 2,
-            py: 1,
-            boxShadow: 3,
           }}
         >
           Reset
