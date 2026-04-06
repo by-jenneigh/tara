@@ -369,7 +369,6 @@ export const DESTINATIONS = [
       "Augustinian missionaries arrived in Maasin in 1615. The church they erected was a visita of Jaro Parish and then of Cabatuan Parish Church beginning in 1732. Finally, it became a parish in 1755. Fr. Francisco Jimenez was the parish priest beginning in 1759. \n During the Philippine Revolution, the Augustinians left in 1898 and Mill Hill Fathers took over in 1906, with Fr. Walter Cain becoming the first parish priest belonging to the said religious order. They handed the parish over to the diocesan in 1963. \n Fluted pilasters frame the central panel of the church’s front wall, containing the portico, the statue of the patron by the red wall with the inscription “St. James the Greater, pray for us”, twin arch windows, a cartouche containing the Roman numeral MCMXXXV (1935), and dentil. The walls flanking it contain blind rose windows. The bell tower is in the gospel side.",
     type: DestinationType.religious,
     images: [
-      "/placeholder_image.jpg",
       // "/destinations/james-1.jpg",
       // "/destinations/james-1.jpg",
       // "/destinations/james-1.jpg",
@@ -1289,7 +1288,7 @@ export const DESTINATIONS = [
     about:
       "San Nicolas de Tolentino Parish Church is one of the most historically significant and architecturally impressive churches in the province of Iloilo. Built in the Neo-Classical architectural style, the church is known for its grand structure, balanced proportions, and elegant design that reflects the influence of Spanish colonial architecture in the Philippines. Its massive brick construction, detailed façade, and imposing presence make it one of the most remarkable religious landmarks in Western Visayas. \n The first parochial church of Cabatuan was completed in 1732, the same year the town became an independent parish under the patronage of Nicholas of Tolentino, the beloved patron saint of the community. From its early years, the church served not only as a place of worship but also as the spiritual and social center of the town. Through the efforts of missionaries and the devotion of the local people, the parish church gradually developed into an important religious institution that guided the faith and traditions of the residents of Cabatuan. \n During its time, the church was widely admired for its beauty and grandeur. In fact, the local publication El Eco de Panay once described it as the “Model of Temples,” highlighting its impressive architectural design and religious importance. The church was also recognized as the largest brick structure in Western Visayas, a testament to the remarkable craftsmanship and engineering of the period. Its thick brick walls, large columns, and spacious interior demonstrated the dedication and skill of the builders who worked to create a structure that would stand for generations. \n Beyond its architectural beauty, the church continues to hold deep cultural and spiritual significance for the people of Cabatuan. It remains the center of religious celebrations, particularly the annual feast of St. Nicholas of Tolentino, where devotees gather to honor their patron saint through prayers, processions, and community festivities. Today, the San Nicolas de Tolentino Parish Church stands not only as a symbol of faith but also as a living historical monument that reflects the rich heritage, devotion, and identity of the people of Cabatuan.",
     type: DestinationType.religious,
-    images: ["/destinations/paklang-2.jpg", "/destinations/paklang-1.jpg"],
+    images: ["/destinations/nicolas-1.jpg", "/destinations/nicolas-2.jpg"],
     town: "Cabatuan",
     mapLocation: {
       lat: 10.8793733,
@@ -1624,6 +1623,350 @@ export const DESTINATIONS = [
             vehicle: "Jeepney",
             minFare: 25,
             maxFare: 30,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "destination-20",
+    name: "Leah’s Tinuom",
+    about:
+      "Leah’s Tinuom is a famous local restaurant and culinary landmark in the municipality of Cabatuan, located in Zone 10 Poblacion, near the Cabatuan Public Market, E&Y Bldg, Bermejo Ext Street, Cabatuan, Philippines, 5031, known especially for serving authentic tinu om nga manok — a traditional Ilonggo dish that is a cultural specialty of the town. The name tinu om refers to chicken and spices wrapped in banana leaves and steamed, a cooking method that produces a flavorful broth and tender meat deeply rooted in Cabatuan’s heritage. \n This restaurant has a long history dating back to the 1950s, when it started as a simple carinderia near the town market. It became popular for its tinu om, a recipe passed down from one generation to the next, and has played a key role in preserving the town’s culinary tradition. Over the decades, Leah’s Tinuom has attracted visitors from across Iloilo and beyond — including features on Philippine travel shows — making it one of the must try local food destinations in Cabatuan. \n The restaurant offers this dish alongside other local Filipino favorites in a casual, welcoming setting. Customers often enjoy their meal while experiencing Cabatuan’s laid back small town atmosphere, reflecting the community pride in its signature food.",
+    type: DestinationType.food,
+    images: ["/destinations/leah-1.jpg"],
+    town: "Cabatuan",
+    mapLocation: {
+      lat: 10.8783193,
+      lng: 122.4815642,
+    },
+    contact: [
+      {
+        entity: "Mobile",
+        hotline: "09653413256",
+      },
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Leah's Tinuom",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 20,
+            maxFare: 25,
+          },
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "E-bus",
+            minFare: 37,
+            maxFare: 41,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Leah's Tinuom",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Leah's Tinuom",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "destination-21",
+    name: "Darapugan Restaurant",
+    about:
+      "Darapugan is a local restaurant located in Barangay Ayaman, Cabatuan, Iloilo. The place is known for offering a relaxing dining experience where visitors can enjoy Filipino dishes, grilled foods, and local specialties. Many people visit Darapugan because of its peaceful environment, making it a good place for family gatherings, casual dining, and small celebrations. \n  The restaurant is designed with a simple and comfortable setting that reflects the laid-back lifestyle of the province. Customers can enjoy freshly cooked meals while experiencing the quiet atmosphere of the countryside. It is popular among locals and travelers who want to taste authentic Ilonggo flavors while visiting Cabatuan. \n Because Cabatuan is mainly an agricultural town with rice fields, farms, and rural landscapes, restaurants like Darapugan give visitors a chance to relax and enjoy food in a calm provincial environment.",
+    type: DestinationType.food,
+    images: [
+      "/destinations/darapugan-3.jpg",
+      "/destinations/darapugan-1.jpg",
+      "/destinations/darapugan-2.jpg",
+      "/destinations/darapugan-4.jpg",
+      "/destinations/darapugan-5.jpg",
+      "/destinations/darapugan-6.jpg",
+    ],
+    town: "Cabatuan",
+    mapLocation: {
+      lat: 10.8859267,
+      lng: 122.4849869,
+    },
+    contact: [
+      {
+        entity: "Mobile",
+        hotline: "09653413256",
+      },
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Jeep",
+            minFare: 10,
+            maxFare: 15,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 20,
+            maxFare: 25,
+          },
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "E-bus",
+            minFare: 37,
+            maxFare: 41,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Jeep",
+            minFare: 10,
+            maxFare: 15,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Jeep",
+            minFare: 10,
+            maxFare: 15,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "destination-22",
+    name: "Anyang’s Food and Beverage",
+    about:
+      "Anyang’s Food and Beverage is a popular local dining spot and café in the municipality of Cabatuan, located at Tigbauan Road, Cabatuan, Iloilo, Philippines. The restaurant is known for its affordable comfort food, casual atmosphere, and friendly service, making it a favorite among locals and visitors alike. Many come for quick meals, snacks, drinks, lunch, or casual hangouts. Reviewers especially praise its chicken dishes and varied lunchtime options, perfect for everyday dining. \n Guests also enjoy the relaxed vibe and coffee/tea offerings, making it an ideal place to stop by for a simple meal, a drink with friends, or a quick bite during a food trip around Cabatuan. Its accessible location in the town proper ensures that both residents and travelers can easily find and enjoy the restaurant.",
+    type: DestinationType.food,
+    images: [
+      "/destinations/anyang-3.jpg",
+      "/destinations/anyang-1.jpg",
+      "/destinations/anyang-2.jpg",
+      "/destinations/anyang-4.jpg",
+      "/destinations/anyang-5.jpg",
+      "/destinations/anyang-6.jpg",
+    ],
+    town: "Cabatuan",
+    mapLocation: {
+      lat: 10.9207486,
+      lng: 122.4856027,
+    },
+    contact: [
+      {
+        entity: "Mobile",
+        hotline: "09653413256",
+      },
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Tricycle",
+            minFare: 20,
+            maxFare: 25,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Jeep",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 20,
+            maxFare: 25,
+          },
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "E-bus",
+            minFare: 37,
+            maxFare: 41,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Jeep",
+            minFare: 10,
+            maxFare: 15,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Cabatuan Plaza",
+            vehicle: "Jeepney",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+          {
+            from: "Cabatuan Poblacion",
+            to: "Darapugan",
+            vehicle: "Jeep",
+            minFare: 10,
+            maxFare: 15,
           },
         ],
       },
