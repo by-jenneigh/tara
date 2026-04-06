@@ -369,9 +369,9 @@ export const DESTINATIONS = [
       "Augustinian missionaries arrived in Maasin in 1615. The church they erected was a visita of Jaro Parish and then of Cabatuan Parish Church beginning in 1732. Finally, it became a parish in 1755. Fr. Francisco Jimenez was the parish priest beginning in 1759. \n During the Philippine Revolution, the Augustinians left in 1898 and Mill Hill Fathers took over in 1906, with Fr. Walter Cain becoming the first parish priest belonging to the said religious order. They handed the parish over to the diocesan in 1963. \n Fluted pilasters frame the central panel of the church’s front wall, containing the portico, the statue of the patron by the red wall with the inscription “St. James the Greater, pray for us”, twin arch windows, a cartouche containing the Roman numeral MCMXXXV (1935), and dentil. The walls flanking it contain blind rose windows. The bell tower is in the gospel side.",
     type: DestinationType.religious,
     images: [
-      // "/destinations/james-1.jpg",
-      // "/destinations/james-1.jpg",
-      // "/destinations/james-1.jpg",
+      "/destinations/james-1.jpg",
+      "/destinations/james-2.jpg",
+      "/destinations/james-3.jpg",
     ],
     town: "Maasin",
     mapLocation: {
