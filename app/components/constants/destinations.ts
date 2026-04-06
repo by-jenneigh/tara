@@ -368,7 +368,12 @@ export const DESTINATIONS = [
     about:
       "Augustinian missionaries arrived in Maasin in 1615. The church they erected was a visita of Jaro Parish and then of Cabatuan Parish Church beginning in 1732. Finally, it became a parish in 1755. Fr. Francisco Jimenez was the parish priest beginning in 1759. \n During the Philippine Revolution, the Augustinians left in 1898 and Mill Hill Fathers took over in 1906, with Fr. Walter Cain becoming the first parish priest belonging to the said religious order. They handed the parish over to the diocesan in 1963. \n Fluted pilasters frame the central panel of the church’s front wall, containing the portico, the statue of the patron by the red wall with the inscription “St. James the Greater, pray for us”, twin arch windows, a cartouche containing the Roman numeral MCMXXXV (1935), and dentil. The walls flanking it contain blind rose windows. The bell tower is in the gospel side.",
     type: DestinationType.religious,
-    images: ["/placeholder_image.jpg"],
+    images: [
+      "/placeholder_image.jpg",
+      // "/destinations/james-1.jpg",
+      // "/destinations/james-1.jpg",
+      // "/destinations/james-1.jpg",
+    ],
     town: "Maasin",
     mapLocation: {
       lat: 10.8904827,
@@ -432,7 +437,11 @@ export const DESTINATIONS = [
     about:
       "Francisco's Farm Resto and Grill - is one of the charming dining destinations in Maasin, located in Barangay Sinubsuban. This restaurant is known for its relaxing farm-style atmosphere, making it an ideal place for people who want to enjoy delicious food while surrounded by a calm and refreshing environment. With its open space, greenery, and peaceful surroundings, Francisco's Farm Resto and Grill provides guests with a comfortable place to unwind and spend quality time with family and friends. \n The restaurant offers a wide variety of dishes that can satisfy different tastes, making it the perfect place to dine for any occasion. Whether visitors are looking for a hearty meal, a casual lunch, or a special dinner, the restaurant’s menu provides many flavorful options prepared with care. The combination of good food and a pleasant ambiance makes the dining experience more enjoyable and memorable for guests. \n Aside from being a restaurant, Francisco's Farm Resto and Grill is also a great venue for celebrations and special gatherings. The place features a spacious pavilion that can accommodate different types of events such as birthdays, weddings, reunions, and other important occasions. Because of its beautiful surroundings and relaxing atmosphere, many people choose this location to celebrate memorable moments with their loved ones. \n Visitors who come to Francisco's Farm Resto and Grill can experience not only great food but also the warm and welcoming atmosphere that the place offers. Its peaceful farm-like setting allows guests to relax, enjoy nature, and take a break from the busy pace of everyday life. For anyone visiting Maasin, Iloilo, stopping by this restaurant is a wonderful opportunity to enjoy delicious meals, celebrate special events, and experience the charm of a countryside dining destination.",
     type: DestinationType.nature,
-    images: ["/placeholder_image.jpg"],
+    images: [
+      "/destinations/francisco-1.jpg",
+      "/destinations/francisco-2.jpg",
+      "/destinations/francisco-3.jpg",
+    ],
     town: "Maasin",
     mapLocation: {
       lat: 10.8973322,
@@ -794,9 +803,9 @@ export const DESTINATIONS = [
       "Mt. IDAY, located in Janiuay, Iloilo, is a captivating destination that beckons nature lovers and adventure seekers alike. Known for its stunning panoramic views and lush surroundings, this mountain offers an escape from bustling city life. The trails winding through the mountainous terrain are suitable for both seasoned hikers and casual walkers, making it an ideal spot for family outings or solo adventures. Along the way, visitors can marvel at the diverse flora and fauna that thrive in this pristine environment, creating a perfect backdrop for photography enthusiasts and nature lovers. \n As you ascend, the cool mountain breeze and the chirping of native birds will accompany you, enhancing the serene experience. At the summit, the breathtaking vistas of the surrounding valleys and hills are nothing short of spectacular, providing a rewarding sense of accomplishment for those who reach the top. It's a place where one can reflect and rejuvenate, surrounded by the beauty of nature. Moreover, the local community is warm and welcoming, often sharing their insights and stories about the mountain's significance and the rich cultural heritage of the area. \n Visiting Mt. IDAY is not just about the hike; it's about immersing yourself in the natural beauty and cultural fabric of Iloilo. The mountain is accessible year-round, making it a perfect destination regardless of the season. Whether you're looking to embark on a challenging trek or simply wish to enjoy a picnic amidst nature, Mt. IDAY promises an unforgettable experience.",
     type: DestinationType.nature,
     images: [
-      "/destinations/damires-1.jpeg",
-      "/destinations/damires-2.jpeg",
-      "/destinations/damires-3.jpeg",
+      "/destinations/iday-1.jpeg",
+      "/destinations/iday-2.jpeg",
+      "/destinations/iday-3.jpeg",
     ],
     town: "Janiuay",
     mapLocation: {
