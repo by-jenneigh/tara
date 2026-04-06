@@ -1040,75 +1040,291 @@ export const DESTINATIONS = [
       },
     ],
   },
-  // {
-  //   id: "destination-13",
-  //   name: "Suarez Siomai Food Hub",
-  //   about:
-  //     "Suarez Siomai Food Hub is a popular dining destination in Abordo St, Janiuay, Philippines, 5034. It has garnered a 4.2 Google rating and is recognized as the 6th best restaurant in the area, with 36 reviews and 18 detailed photos. The restaurant offers a variety of food options and is known for its quality service. To contact Suarez Siomai Food Hub, you can reach them at 0928 363 4514. The restaurant is categorized under Restaurants and mobile food service activities, and it has a 4.1 Cybo Score.",
-  //   type: DestinationType.food,
-  //   images: [
-  //     "/destinations/suarez-2.jpg",
-  //     "/destinations/suarez-3.jpg",
-  //     "/destinations/suarez-4.jpg",
-  //     "/destinations/suarez-1.webp",
-  //   ],
-  //   town: "Janiuay",
-  //   mapLocation: {
-  //     lat: 10.950208,
-  //     lng: 122.4881084,
-  //   },
-  //   contact: [
-  //     {
-  //       entity: "Facebook",
-  //       hotline: "Test Facebook Account",
-  //     },
-  //   ],
-  //   fares: [
-  //     {
-  //       origin: "airport",
-  //       steps: [
-  //         {
-  //           from: "Iloilo International Airport",
-  //           to: "Sta. Barbara",
-  //           vehicle: "Tricyle",
-  //           minFare: 25,
-  //           maxFare: 30,
-  //         },
-  //         {
-  //           from: "Sta. Barbara",
-  //           to: "Janiuay Poblacion",
-  //           vehicle: "Jeepney",
-  //           minFare: 30,
-  //           maxFare: 35,
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       origin: "terminal-1",
-  //       steps: [
-  //         {
-  //           from: "Robinson's Pavia Terminal",
-  //           to: "Janiuay Poblacion",
-  //           vehicle: "Jeepney",
-  //           minFare: 45,
-  //           maxFare: 50,
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       origin: "terminal-2",
-  //       steps: [
-  //         {
-  //           from: "Christ The King Pavia Terminal",
-  //           to: "Janiuay Poblacion",
-  //           vehicle: "Jeepney",
-  //           minFare: 45,
-  //           maxFare: 50,
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
+  {
+    id: "destination-13",
+    name: "Suarez Siomai Food Hub",
+    about:
+      "Suarez Siomai Food Hub is a popular dining destination in Abordo St, Janiuay, Philippines, 5034. It has garnered a 4.2 Google rating and is recognized as the 6th best restaurant in the area, with 36 reviews and 18 detailed photos. The restaurant offers a variety of food options and is known for its quality service. To contact Suarez Siomai Food Hub, you can reach them at 0928 363 4514. The restaurant is categorized under Restaurants and mobile food service activities, and it has a 4.1 Cybo Score.",
+    type: DestinationType.food,
+    images: [
+      "/destinations/suarez-2.jpg",
+      "/destinations/suarez-3.jpg",
+      "/destinations/suarez-4.jpg",
+      "/destinations/suarez-1.webp",
+    ],
+    town: "Janiuay",
+    mapLocation: {
+      lat: 10.950208,
+      lng: 122.4881084,
+    },
+    contact: [
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Suarez Siomai Food Hub",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Suarez Siomai Food Hub",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Suarez Siomai Food Hub",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "destination-23",
+    name: "Raac's Grill",
+    about:
+      "RAAC's Janiuay is a popular Filipino grill located in Brgy. Jibolo, Janiuay, Iloilo City. Known for its affordable meals and generous servings, it offers a variety of dishes including Chicken Inasal, grilled pork liempo, and sizzling sisig. The restaurant is praised for its warm atmosphere and good service, making it a favorite among locals and visitors alike. Customers appreciate the unlimited rice option, which adds to the value of the meals.",
+    type: DestinationType.food,
+    images: [
+      "/destinations/raacs-1.png",
+      "/destinations/raacs-2.png",
+      "/destinations/raacs-3.png",
+    ],
+    town: "Janiuay",
+    mapLocation: {
+      lat: 10.9614084,
+      lng: 122.5009241,
+    },
+    contact: [
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Raac's Grill",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Raac's Grill",
+            vehicle: "Jeep",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Raac's Grill",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Raac's Grill",
+            vehicle: "Jeep",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Raac's Grill",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Raac's Grill",
+            vehicle: "Jeep",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "destination-24",
+    name: "Keloy's Grill and Restaurant",
+    about:
+      "Keloy’s Grill and Restaurant is a popular local dining destination located in the municipality of Janiuay, about 30 kilometers from Iloilo City. The restaurant is specifically located along Capt. A. Tirador Street, Janiuay, 5034 Iloilo, Philippines, in the town proper. Situated along the main road, the restaurant is easy to find and accessible to both locals and visitors traveling around the area. Keloy’s Restaurant is known for serving delicious and affordable Filipino dishes that reflect the rich culinary traditions of the Ilonggo people. The restaurant offers a variety of meals such as grilled meats, fried chicken, seafood, pancit, and rice meals that are perfect for families, tourists, and groups of friends. With its simple yet welcoming atmosphere, it provides a comfortable place where visitors can relax and enjoy satisfying food after exploring nearby attractions in Janiuay. Over the years, Keloy’s Restaurant has become a familiar gathering place where people share meals and experience the warm hospitality that Iloilo is known for.",
+    type: DestinationType.food,
+    images: ["/destinations/keloys-1.jpg", "/destinations/keloys-2.jpg"],
+    town: "Janiuay",
+    mapLocation: {
+      lat: 10.9496928,
+      lng: 122.5041126,
+    },
+    contact: [
+      {
+        entity: "Facebook",
+        hotline: "Test Facebook Account",
+      },
+    ],
+    fares: [
+      {
+        origin: "airport",
+        steps: [
+          {
+            from: "Iloilo International Airport",
+            to: "Sta. Barbara",
+            vehicle: "Tricyle",
+            minFare: 25,
+            maxFare: 30,
+          },
+          {
+            from: "Sta. Barbara",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 30,
+            maxFare: 35,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Keloy's Grill and Restaurant",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-1",
+        steps: [
+          {
+            from: "Robinson's Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Keloy's Grill and Restaurant",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+      {
+        origin: "terminal-2",
+        steps: [
+          {
+            from: "Christ The King Pavia Terminal",
+            to: "Janiuay Poblacion",
+            vehicle: "Jeepney",
+            minFare: 45,
+            maxFare: 50,
+          },
+          {
+            from: "Janiuay Poblacion",
+            to: "Keloy's Grill and Restaurant",
+            vehicle: "Tricycle",
+            minFare: 15,
+            maxFare: 20,
+          },
+        ],
+      },
+    ],
+  },
 
   // CABATUAN
   {
