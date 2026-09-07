@@ -295,25 +295,21 @@ function DestinationSearch({
           request,
         );
 
-      const mappedSuggestions: SearchSuggestion[] = response.suggestions
-        .map((suggestion) => {
-          const placePrediction = suggestion.placePrediction;
+      const mappedSuggestions: SearchSuggestion[] = [];
 
-          if (!placePrediction) {
-            return null;
-          }
+      for (const suggestion of response.suggestions) {
+        const placePrediction = suggestion.placePrediction;
 
-          return {
-            place: placePrediction.toPlace(),
-            text:
-              placePrediction.mainText?.text ||
-              placePrediction.text?.text ||
-              "",
-            secondaryText: placePrediction.secondaryText?.text || "",
-          };
-        })
-        .filter((item): item is SearchSuggestion => item !== null)
-        .slice(0, 6);
+        if (!placePrediction) {
+          continue;
+        }
+
+        mappedSuggestions.push({
+          place: placePrediction.toPlace(),
+          text: placePrediction.text?.toString() ?? "",
+          secondaryText: placePrediction.secondaryText?.toString() ?? "",
+        });
+      }
 
       setSuggestions(mappedSuggestions);
     } catch (error) {
@@ -841,19 +837,16 @@ function NavigationMap({
 
         for (const leg of googleRoute.legs ?? []) {
           for (const step of leg.steps ?? []) {
-            const endLocation = step.endLocation?.latLng;
+            const endLocation = step.endLocation;
 
             steps.push({
               instruction: step.instructions || "Continue",
-
               maneuver: step.maneuver || undefined,
-
               distanceMeters: step.distanceMeters ?? 0,
-
               endLocation: endLocation
                 ? {
-                    lat: endLocation.lat(),
-                    lng: endLocation.lng(),
+                    lat: endLocation.lat,
+                    lng: endLocation.lng,
                   }
                 : undefined,
             });
