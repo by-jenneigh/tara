@@ -11,15 +11,15 @@ const Map = dynamic(() => import("@/app/components/common/map"), {
 
 export default function Navigation() {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
   const fromCurrentPosition =
-    searchParams.get("fromCurrentPosition") === "true" ? true : false;
-  const router = useRouter();
+    searchParams.get("fromCurrentPosition") === "true";
 
   return (
-    <Stack alignItems={"center"} className="w-full">
+    <Stack alignItems="center" className="w-full">
       <TopBar label="Navigation" onBackClick={() => router.back()} />
 
       <Map
