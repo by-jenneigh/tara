@@ -33,11 +33,11 @@ export default function Landing() {
           <Button
             href="/home"
             variant="contained"
-            color="success"
+            color="warning"
             size="large"
             sx={{ boxShadow: "0 12px 18px rgba(0, 0, 0, 0.35)" }}
           >
-            Get Started
+            <b>Get Started</b>
           </Button>
         </Box>
       </main>

@@ -13,64 +13,61 @@ export default function Home() {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <Stack alignItems={"center"}>
-      <Stack alignContent={"center"} mb={5}>
-        <Typography
-          variant="h6"
-          color="white"
-          align="center"
-          fontWeight={"bold"}
-        >
+    <Stack alignItems="center" sx={{ width: "100%" }}>
+      <Stack alignItems="center" mb={5}>
+        <Typography variant="h6" color="white" align="center" fontWeight="bold">
           Explore the 3rd District of Iloilo
         </Typography>
-
-        <Search
-          options={DESTINATIONS}
-          onInputChange={setSearchValue}
-          onSelect={(destination) => {
-            if (destination) {
-              router.push(`/destinations/${destination.id}`);
-            }
-          }}
-        />
       </Stack>
 
+      {/* Features */}
       <Grid
-        mb={5}
         container
         spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
+        columns={12}
+        sx={{
+          width: "100%",
+          maxWidth: 1300,
+          mb: 5,
+        }}
       >
         {FEATURES.map((feature, idx) => (
-          <DestinationCard
-            key={idx}
-            name={feature.name}
-            content={feature.about}
-            image={feature.icon}
-            onCardClick={() => router.push(feature.path)}
-          />
+          <Grid key={idx} size={{ xs: 6 }}>
+            <DestinationCard
+              name={feature.name}
+              content={feature.about}
+              image={feature.icon}
+              onCardClick={() => router.push(feature.path)}
+            />
+          </Grid>
         ))}
       </Grid>
 
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
+      {/* Featured Destinations */}
+      <Stack
+        sx={{
+          width: "100%",
+          maxWidth: 1300,
+        }}
       >
-        <Typography color="white" variant="h6" fontWeight={"bold"}>
+        <Typography color="white" variant="h6" fontWeight="bold" mb={2}>
           Featured Destinations
         </Typography>
-        {DESTINATIONS.slice(0, 2).map((destination, idx) => (
-          <DestinationCard
-            key={idx}
-            name={destination.name}
-            image={destination.images[0]}
-            onCardClick={() => {
-              router.push(`/destinations/${destination.id}`);
-            }}
-          />
-        ))}
-      </Grid>
+
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={12}>
+          {DESTINATIONS.slice(0, 2).map((destination, idx) => (
+            <Grid key={idx} size={{ xs: 6 }}>
+              <DestinationCard
+                name={destination.name}
+                image={destination.images[0]}
+                onCardClick={() => {
+                  router.push(`/destinations/${destination.id}`);
+                }}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Stack>
     </Stack>
   );
 }
