@@ -21,22 +21,34 @@ export default function TopBar(props: TopBarProps) {
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.appBar }}
       >
-        <Toolbar>
+        <Toolbar
+          sx={{
+            position: "relative",
+          }}
+        >
           <IconButton
             size="large"
             edge="start"
             color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
+            aria-label="back"
             onClick={onBackClick}
+            sx={{
+              mr: 2,
+              zIndex: 1,
+            }}
           >
             <ArrowBackIcon />
           </IconButton>
+
           <Typography
-            align="center"
             variant="h5"
             component="div"
-            sx={{ flexGrow: 1 }}
+            sx={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+              whiteSpace: "nowrap",
+            }}
           >
             {label}
           </Typography>
