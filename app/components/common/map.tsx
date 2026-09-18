@@ -50,6 +50,7 @@ type Destination = {
   location: LatLng;
   photoUrl?: string;
   category?: string;
+  icon?: string;
 };
 
 type SearchSuggestion = {
@@ -566,6 +567,17 @@ function NavigationMap({
 
   const arrivedSpokenRef = useRef(false);
 
+  /*
+   * Prevent overlapping getCurrentPosition requests.
+   */
+  const locationRequestActiveRef = useRef(false);
+
+  /*
+   * Independent fallback so the location button cannot
+   * remain in a loading state indefinitely.
+   */
+  const locationFallbackTimerRef = useRef<number | null>(null);
+
   /* ------------------------------------------------------------------------ */
   /* Restore panel state                                                      */
   /* ------------------------------------------------------------------------ */
@@ -618,64 +630,186 @@ function NavigationMap({
   /* Current location                                                         */
   /* ------------------------------------------------------------------------ */
 
-  const getCurrentLocation = useCallback(() => {
-    if (!navigator.geolocation) {
-      setLocationError("Geolocation is not supported by this browser.");
-      return;
-    }
+  const getCurrentLocation = useCallback(
+    (options?: { centerMap?: boolean }) => {
+      if (!navigator.geolocation) {
+        setLocationError("Geolocation is not supported by this browser.");
+        return;
+      }
 
-    setLocationLoading(true);
-    setLocationError(null);
+      /*
+       * Do not allow multiple location requests at once.
+       *
+       * This is especially important when:
+       * - the user clicks Use My Location repeatedly
+       * - the location watcher starts at the same time
+       * - navigation is being started
+       */
+      if (locationRequestActiveRef.current) {
+        return;
+      }
 
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const location = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
+      /*
+       * Explicitly clicking "Use My Location" should recenter.
+       *
+       * During normal browsing, the location watcher should NOT
+       * continuously recenter the map.
+       *
+       * During active navigation, following the user is expected.
+       */
+      const shouldCenterMap = options?.centerMap === true || navigationActive;
 
-        setUserLocation(location);
-        setMapCenter(location);
+      locationRequestActiveRef.current = true;
 
-        setMapZoom(navigationActive ? 17 : 15);
+      setLocationLoading(true);
+      setLocationError(null);
+
+      /*
+       * Geolocation itself has a timeout, but this additional
+       * timer guarantees the UI cannot remain stuck forever.
+       */
+      if (locationFallbackTimerRef.current !== null) {
+        window.clearTimeout(locationFallbackTimerRef.current);
+      }
+
+      locationFallbackTimerRef.current = window.setTimeout(() => {
+        locationRequestActiveRef.current = false;
+        locationFallbackTimerRef.current = null;
 
         setLocationLoading(false);
-      },
-      (error) => {
-        console.error("Geolocation error:", error);
 
-        setLocationLoading(false);
+        setLocationError(
+          "Unable to get your current location. Please allow location access and try again.",
+        );
+      }, 17000);
 
-        switch (error.code) {
-          case error.PERMISSION_DENIED:
-            setLocationError("Location permission was denied.");
-            break;
+      const finishLocationRequest = () => {
+        locationRequestActiveRef.current = false;
 
-          case error.POSITION_UNAVAILABLE:
-            setLocationError("Your current location is unavailable.");
-            break;
+        if (locationFallbackTimerRef.current !== null) {
+          window.clearTimeout(locationFallbackTimerRef.current);
 
-          case error.TIMEOUT:
-            setLocationError("Getting your location timed out.");
-            break;
-
-          default:
-            setLocationError("Unable to get your current location.");
+          locationFallbackTimerRef.current = null;
         }
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 15000,
-        maximumAge: 10000,
-      },
-    );
-  }, [navigationActive]);
+
+        setLocationLoading(false);
+      };
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const location = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+
+          setUserLocation(location);
+
+          /*
+           * IMPORTANT:
+           *
+           * Do not update mapCenter just because the GPS
+           * position changed.
+           *
+           * Otherwise MapController will call panTo()
+           * and fight against the user's manual map dragging.
+           */
+          if (shouldCenterMap) {
+            setMapCenter(location);
+            setMapZoom(navigationActive ? 17 : 15);
+          }
+
+          finishLocationRequest();
+        },
+        (error) => {
+          console.error("Geolocation error:", error);
+
+          finishLocationRequest();
+
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              setLocationError(
+                "Location permission was denied. Please allow location access in your browser and try again.",
+              );
+              break;
+
+            case error.POSITION_UNAVAILABLE:
+              setLocationError(
+                "Your current location is unavailable. Please check your device location settings.",
+              );
+              break;
+
+            case error.TIMEOUT:
+              setLocationError(
+                "Getting your location timed out. Please try again.",
+              );
+              break;
+
+            default:
+              setLocationError(
+                "Unable to get your current location. Please try again.",
+              );
+          }
+        },
+        {
+          /*
+           * High accuracy can take significantly longer on
+           * some desktop browsers and devices.
+           *
+           * The location is used primarily as the route origin,
+           * so a normal browser location fix is sufficient.
+           */
+          enableHighAccuracy: false,
+
+          /*
+           * Browser request timeout.
+           */
+          timeout: 15000,
+
+          /*
+           * Allow a recent location fix instead of always
+           * forcing a brand-new GPS lookup.
+           */
+          maximumAge: 30000,
+        },
+      );
+    },
+    [navigationActive],
+  );
+
+  /*
+   * Clean up the fallback timer when the component unmounts.
+   */
+  useEffect(() => {
+    return () => {
+      if (locationFallbackTimerRef.current !== null) {
+        window.clearTimeout(locationFallbackTimerRef.current);
+
+        locationFallbackTimerRef.current = null;
+      }
+
+      if (watchIdRef.current !== null) {
+        navigator.geolocation?.clearWatch(watchIdRef.current);
+
+        watchIdRef.current = null;
+      }
+    };
+  }, []);
 
   /* ------------------------------------------------------------------------ */
   /* Watch current location                                                   */
   /* ------------------------------------------------------------------------ */
 
   useEffect(() => {
+    /*
+     * Only watch the user's location when:
+     *
+     * 1. The map was opened specifically from the
+     *    current-location flow, OR
+     * 2. Live navigation is active.
+     *
+     * Normal destination browsing does not need a
+     * continuous GPS watcher.
+     */
     if (!fromCurrentPosition && !navigationActive) {
       return;
     }
@@ -684,7 +818,16 @@ function NavigationMap({
       return;
     }
 
-    getCurrentLocation();
+    /*
+     * Get an initial location.
+     *
+     * If the map came from "current position", center it
+     * once. After that, GPS updates will NOT recenter the
+     * map unless navigation is active.
+     */
+    getCurrentLocation({
+      centerMap: fromCurrentPosition && !navigationActive,
+    });
 
     watchIdRef.current = navigator.geolocation.watchPosition(
       (position) => {
@@ -695,6 +838,13 @@ function NavigationMap({
 
         setUserLocation(location);
 
+        /*
+         * ONLY live navigation continuously follows
+         * the user's GPS position.
+         *
+         * This is the key fix for the map "jerking back"
+         * when the user manually pans the map.
+         */
         if (navigationActive) {
           setMapCenter(location);
           setMapZoom(17);
@@ -702,9 +852,19 @@ function NavigationMap({
       },
       (error) => {
         console.error("Location watch error:", error);
+
+        /*
+         * Don't show a second persistent error if the
+         * initial location request already reported one.
+         */
+        if (error.code === error.PERMISSION_DENIED) {
+          setLocationError(
+            "Location permission was denied. Please allow location access in your browser.",
+          );
+        }
       },
       {
-        enableHighAccuracy: true,
+        enableHighAccuracy: false,
         maximumAge: 5000,
         timeout: 15000,
       },
@@ -766,6 +926,10 @@ function NavigationMap({
     setOffRoute(false);
     setArrived(false);
 
+    /*
+     * Search selection should always move the map to
+     * the selected destination.
+     */
     setMapCenter(selectedDestination.location);
 
     setMapZoom(15);
@@ -841,8 +1005,11 @@ function NavigationMap({
 
             steps.push({
               instruction: step.instructions || "Continue",
+
               maneuver: step.maneuver || undefined,
+
               distanceMeters: step.distanceMeters ?? 0,
+
               endLocation: endLocation
                 ? {
                     lat: endLocation.lat,
@@ -863,9 +1030,15 @@ function NavigationMap({
         setCurrentStepIndex(0);
         setOffRoute(false);
         setArrived(false);
+
         arrivedSpokenRef.current = false;
         lastSpokenStepRef.current = null;
 
+        /*
+         * When simply viewing a route, center on the
+         * destination. During navigation, keep following
+         * the user's location instead.
+         */
         if (!navigationActive) {
           setMapCenter(destination.location);
 
@@ -1072,9 +1245,13 @@ function NavigationMap({
       setMapZoom(17);
 
       await calculateRoute(userLocation);
-    } else {
-      getCurrentLocation();
     }
+
+    /*
+     * If there is no location yet, changing
+     * navigationActive above starts the location watcher,
+     * which obtains the user's location.
+     */
   };
 
   /* ------------------------------------------------------------------------ */
@@ -1101,7 +1278,7 @@ function NavigationMap({
   };
 
   /* ------------------------------------------------------------------------ */
-  /* Reset                                                                     */
+  /* Reset                                                                    */
   /* ------------------------------------------------------------------------ */
 
   const resetMap = () => {
@@ -1121,7 +1298,7 @@ function NavigationMap({
   };
 
   /* ------------------------------------------------------------------------ */
-  /* Fare                                                                      */
+  /* Fare                                                                     */
   /* ------------------------------------------------------------------------ */
 
   const estimatedFare = calculateFare(route?.distanceMeters ?? null);
@@ -1134,7 +1311,7 @@ function NavigationMap({
       : null;
 
   /* ------------------------------------------------------------------------ */
-  /* Render                                                                    */
+  /* Render                                                                   */
   /* ------------------------------------------------------------------------ */
 
   return (
@@ -1150,8 +1327,6 @@ function NavigationMap({
       <GoogleMap
         defaultCenter={defaultCenter}
         defaultZoom={13}
-        // center={mapCenter}
-        // zoom={mapZoom}
         mapId="navigation-map"
         gestureHandling="greedy"
         disableDefaultUI={false}
@@ -1181,7 +1356,11 @@ function NavigationMap({
         {/* ---------------------------------------------------------------- */}
 
         {destination && (
-          <Marker position={destination.location} title={destination.name} />
+          <Marker
+            position={destination.location}
+            title={destination.name}
+            icon={destination.icon}
+          />
         )}
 
         {/* ---------------------------------------------------------------- */}
@@ -1206,7 +1385,11 @@ function NavigationMap({
           }}
         >
           <Button
-            onClick={getCurrentLocation}
+            onClick={() =>
+              getCurrentLocation({
+                centerMap: true,
+              })
+            }
             disabled={locationLoading}
             sx={{
               minWidth: 52,
@@ -1468,9 +1651,7 @@ function NavigationMap({
                       <Typography
                         variant="body2"
                         color="text.secondary"
-                        sx={{
-                          mt: 0.5,
-                        }}
+                        sx={{ mt: 0.5 }}
                       >
                         {formatDistance(distanceToCurrentStep)} to next turn
                       </Typography>
@@ -1696,9 +1877,7 @@ function NavigationMap({
                         <Typography
                           variant="body2"
                           color="text.secondary"
-                          sx={{
-                            mt: 0.5,
-                          }}
+                          sx={{ mt: 0.5 }}
                         >
                           {destination.address}
                         </Typography>
@@ -1823,14 +2002,21 @@ function NavigationMap({
                       fullWidth
                       variant="contained"
                       startIcon={<LocateFixed size={18} />}
-                      onClick={getCurrentLocation}
+                      onClick={() =>
+                        getCurrentLocation({
+                          centerMap: true,
+                        })
+                      }
+                      disabled={locationLoading}
                       sx={{
                         mt: 1.5,
                         height: 42,
                         borderRadius: 2,
                       }}
                     >
-                      Use My Location
+                      {locationLoading
+                        ? "Getting location..."
+                        : "Use My Location"}
                     </Button>
                   )}
 

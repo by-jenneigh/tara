@@ -35,7 +35,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -94,6 +94,7 @@ export const DESTINATIONS = [
         ],
       },
     ],
+    icon: "/destinations/paet-1.jpeg",
   },
   {
     id: "destination-2",
@@ -124,7 +125,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -213,7 +214,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -302,7 +303,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -391,7 +392,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -459,7 +460,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -548,7 +549,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -618,7 +619,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -707,7 +708,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -824,7 +825,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -913,7 +914,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -1001,7 +1002,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "TricMulticabyle",
             minFare: 25,
             maxFare: 30,
           },
@@ -1070,7 +1071,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -1159,7 +1160,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -1265,7 +1266,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -1356,7 +1357,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -1452,7 +1453,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -1527,7 +1528,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -1602,7 +1603,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -1702,7 +1703,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -1798,7 +1799,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -1873,7 +1874,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -1976,7 +1977,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
@@ -2100,7 +2101,7 @@ export const DESTINATIONS = [
           {
             from: "Iloilo International Airport",
             to: "Sta. Barbara",
-            vehicle: "Tricyle",
+            vehicle: "Multicab",
             minFare: 25,
             maxFare: 30,
           },
