@@ -79,6 +79,12 @@ type MapProps = {
   fromCurrentPosition?: boolean;
 };
 
+type CameraRequest = {
+  center: LatLng;
+  zoom: number;
+  id: number;
+};
+
 const FARE_BASE = 15;
 const FARE_PER_KM = 2;
 
@@ -201,17 +207,25 @@ function getManeuverLabel(maneuver?: string) {
 
 /* -------------------------------------------------------------------------- */
 /* Map controller                                                             */
+/*                                                                            */
+/* IMPORTANT:                                                                 */
+/* The map is NOT controlled continuously by React state.                     */
+/* It only moves when a new camera request is issued.                        */
+/*                                                                            */
+/* This prevents manual map dragging/zooming from being overridden.           */
 /* -------------------------------------------------------------------------- */
 
-function MapController({ center, zoom }: { center: LatLng; zoom: number }) {
+function MapController({ request }: { request: CameraRequest | null }) {
   const map = useMap();
 
   useEffect(() => {
-    if (!map) return;
+    if (!map || !request) {
+      return;
+    }
 
-    map.panTo(center);
-    map.setZoom(zoom);
-  }, [map, center.lat, center.lng, zoom]);
+    map.setCenter(request.center);
+    map.setZoom(request.zoom);
+  }, [map, request?.id]);
 
   return null;
 }
@@ -246,7 +260,7 @@ function RoutePolyline({ route }: { route: RouteInfo | null }) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Destination search                                                         */
+/* Destination search                                                        */
 /* -------------------------------------------------------------------------- */
 
 function DestinationSearch({
@@ -266,7 +280,9 @@ function DestinationSearch({
     useRef<google.maps.places.AutocompleteSessionToken | null>(null);
 
   useEffect(() => {
-    if (!google.maps?.places) return;
+    if (!google.maps?.places) {
+      return;
+    }
 
     sessionTokenRef.current = new google.maps.places.AutocompleteSessionToken();
   }, []);
@@ -393,7 +409,7 @@ function DestinationSearch({
           position: "absolute",
           top: 16,
           left: 16,
-          zIndex: 20,
+          zIndex: 50,
           borderRadius: 3,
           overflow: "hidden",
         }}
@@ -423,7 +439,7 @@ function DestinationSearch({
         top: 16,
         left: 16,
         right: 16,
-        zIndex: 20,
+        zIndex: 50,
         borderRadius: 3,
         overflow: "visible",
       }}
@@ -519,6 +535,10 @@ function NavigationMap({
   destinationLng,
   fromCurrentPosition = false,
 }: MapProps) {
+  /* ------------------------------------------------------------------------ */
+  /* Basic map state                                                          */
+  /* ------------------------------------------------------------------------ */
+
   const [userLocation, setUserLocation] = useState<LatLng | null>(null);
 
   const [destination, setDestination] = useState<Destination | null>(null);
@@ -531,11 +551,31 @@ function NavigationMap({
 
   const [locationError, setLocationError] = useState<string | null>(null);
 
-  const [mapCenter, setMapCenter] = useState<LatLng>(defaultCenter);
-
-  const [mapZoom, setMapZoom] = useState(13);
-
   const [routeError, setRouteError] = useState<string | null>(null);
+
+  /* ------------------------------------------------------------------------ */
+  /* Camera state                                                             */
+  /*                                                                            */
+  /* Unlike the previous mapCenter/mapZoom state, this is an explicit        */
+  /* camera command. Manual map movement does not update it, so the map       */
+  /* will not jerk back when the user zooms or pans.                         */
+  /* ------------------------------------------------------------------------ */
+
+  const [cameraRequest, setCameraRequest] = useState<CameraRequest | null>(
+    null,
+  );
+
+  const cameraRequestIdRef = useRef(0);
+
+  const moveMapTo = useCallback((center: LatLng, zoom: number) => {
+    cameraRequestIdRef.current += 1;
+
+    setCameraRequest({
+      center,
+      zoom,
+      id: cameraRequestIdRef.current,
+    });
+  }, []);
 
   /* ------------------------------------------------------------------------ */
   /* Navigation state                                                         */
@@ -559,6 +599,10 @@ function NavigationMap({
 
   const [detailsCollapsed, setDetailsCollapsed] = useState(false);
 
+  /* ------------------------------------------------------------------------ */
+  /* Location refs                                                            */
+  /* ------------------------------------------------------------------------ */
+
   const watchIdRef = useRef<number | null>(null);
 
   const lastRerouteAtRef = useRef(0);
@@ -567,15 +611,8 @@ function NavigationMap({
 
   const arrivedSpokenRef = useRef(false);
 
-  /*
-   * Prevent overlapping getCurrentPosition requests.
-   */
   const locationRequestActiveRef = useRef(false);
 
-  /*
-   * Independent fallback so the location button cannot
-   * remain in a loading state indefinitely.
-   */
   const locationFallbackTimerRef = useRef<number | null>(null);
 
   /* ------------------------------------------------------------------------ */
@@ -637,43 +674,24 @@ function NavigationMap({
         return;
       }
 
-      /*
-       * Do not allow multiple location requests at once.
-       *
-       * This is especially important when:
-       * - the user clicks Use My Location repeatedly
-       * - the location watcher starts at the same time
-       * - navigation is being started
-       */
       if (locationRequestActiveRef.current) {
         return;
       }
 
-      /*
-       * Explicitly clicking "Use My Location" should recenter.
-       *
-       * During normal browsing, the location watcher should NOT
-       * continuously recenter the map.
-       *
-       * During active navigation, following the user is expected.
-       */
-      const shouldCenterMap = options?.centerMap === true || navigationActive;
+      const shouldCenterMap = options?.centerMap === true;
 
       locationRequestActiveRef.current = true;
 
       setLocationLoading(true);
       setLocationError(null);
 
-      /*
-       * Geolocation itself has a timeout, but this additional
-       * timer guarantees the UI cannot remain stuck forever.
-       */
       if (locationFallbackTimerRef.current !== null) {
         window.clearTimeout(locationFallbackTimerRef.current);
       }
 
       locationFallbackTimerRef.current = window.setTimeout(() => {
         locationRequestActiveRef.current = false;
+
         locationFallbackTimerRef.current = null;
 
         setLocationLoading(false);
@@ -704,22 +722,13 @@ function NavigationMap({
 
           setUserLocation(location);
 
-          /*
-           * IMPORTANT:
-           *
-           * Do not update mapCenter just because the GPS
-           * position changed.
-           *
-           * Otherwise MapController will call panTo()
-           * and fight against the user's manual map dragging.
-           */
           if (shouldCenterMap) {
-            setMapCenter(location);
-            setMapZoom(navigationActive ? 17 : 15);
+            moveMapTo(location, navigationActive ? 17 : 15);
           }
 
           finishLocationRequest();
         },
+
         (error) => {
           console.error("Geolocation error:", error);
 
@@ -750,35 +759,21 @@ function NavigationMap({
               );
           }
         },
+
         {
-          /*
-           * High accuracy can take significantly longer on
-           * some desktop browsers and devices.
-           *
-           * The location is used primarily as the route origin,
-           * so a normal browser location fix is sufficient.
-           */
           enableHighAccuracy: false,
-
-          /*
-           * Browser request timeout.
-           */
           timeout: 15000,
-
-          /*
-           * Allow a recent location fix instead of always
-           * forcing a brand-new GPS lookup.
-           */
           maximumAge: 30000,
         },
       );
     },
-    [navigationActive],
+    [moveMapTo, navigationActive],
   );
 
-  /*
-   * Clean up the fallback timer when the component unmounts.
-   */
+  /* ------------------------------------------------------------------------ */
+  /* Cleanup                                                                  */
+  /* ------------------------------------------------------------------------ */
+
   useEffect(() => {
     return () => {
       if (locationFallbackTimerRef.current !== null) {
@@ -792,42 +787,72 @@ function NavigationMap({
 
         watchIdRef.current = null;
       }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
     };
   }, []);
 
   /* ------------------------------------------------------------------------ */
-  /* Watch current location                                                   */
+  /* Initial location from current-position flow                              */
+  /*                                                                            */
+  /* This is intentionally separate from the navigation watcher.              */
+  /* fromCurrentPosition only means "get an initial position."                 */
+  /* navigationActive is the authority for continuous tracking.               */
   /* ------------------------------------------------------------------------ */
 
   useEffect(() => {
-    /*
-     * Only watch the user's location when:
-     *
-     * 1. The map was opened specifically from the
-     *    current-location flow, OR
-     * 2. Live navigation is active.
-     *
-     * Normal destination browsing does not need a
-     * continuous GPS watcher.
-     */
-    if (!fromCurrentPosition && !navigationActive) {
+    if (!fromCurrentPosition) {
+      return;
+    }
+
+    if (navigationActive) {
+      return;
+    }
+
+    if (userLocation) {
+      return;
+    }
+
+    getCurrentLocation({
+      centerMap: true,
+    });
+  }, [fromCurrentPosition, navigationActive, userLocation, getCurrentLocation]);
+
+  /* ------------------------------------------------------------------------ */
+  /* Live navigation GPS watcher                                              */
+  /*                                                                            */
+  /* IMPORTANT:                                                               */
+  /* - No watcher during ordinary browsing.                                   */
+  /* - No continuous tracking merely because fromCurrentPosition is true.    */
+  /* - Watcher starts only when navigationActive becomes true.                */
+  /* - GPS updates recenter the map ONLY during active navigation.            */
+  /* ------------------------------------------------------------------------ */
+
+  useEffect(() => {
+    if (!navigationActive) {
       return;
     }
 
     if (!navigator.geolocation) {
+      setLocationError("Geolocation is not supported by this browser.");
       return;
     }
 
-    /*
-     * Get an initial location.
-     *
-     * If the map came from "current position", center it
-     * once. After that, GPS updates will NOT recenter the
-     * map unless navigation is active.
-     */
-    getCurrentLocation({
-      centerMap: fromCurrentPosition && !navigationActive,
-    });
+    /* Get an immediate location fix when navigation starts. */
+    if (!userLocation) {
+      getCurrentLocation({
+        centerMap: true,
+      });
+    }
+
+    /* Prevent duplicate watchers. */
+    if (watchIdRef.current !== null) {
+      navigator.geolocation.clearWatch(watchIdRef.current);
+
+      watchIdRef.current = null;
+    }
 
     watchIdRef.current = navigator.geolocation.watchPosition(
       (position) => {
@@ -839,30 +864,25 @@ function NavigationMap({
         setUserLocation(location);
 
         /*
-         * ONLY live navigation continuously follows
-         * the user's GPS position.
+         * ACTIVE NAVIGATION:
+         * Continuously follow the user's GPS position.
          *
-         * This is the key fix for the map "jerking back"
-         * when the user manually pans the map.
+         * This is the ONLY place where normal GPS updates
+         * automatically move the map.
          */
-        if (navigationActive) {
-          setMapCenter(location);
-          setMapZoom(17);
-        }
+        moveMapTo(location, 17);
       },
+
       (error) => {
         console.error("Location watch error:", error);
 
-        /*
-         * Don't show a second persistent error if the
-         * initial location request already reported one.
-         */
         if (error.code === error.PERMISSION_DENIED) {
           setLocationError(
             "Location permission was denied. Please allow location access in your browser.",
           );
         }
       },
+
       {
         enableHighAccuracy: false,
         maximumAge: 5000,
@@ -877,7 +897,7 @@ function NavigationMap({
         watchIdRef.current = null;
       }
     };
-  }, [fromCurrentPosition, navigationActive, getCurrentLocation]);
+  }, [navigationActive, getCurrentLocation, moveMapTo]);
 
   /* ------------------------------------------------------------------------ */
   /* Destination from URL                                                     */
@@ -904,13 +924,14 @@ function NavigationMap({
 
     setDestination(destinationFromUrl);
 
-    setMapCenter({
-      lat: destinationLat,
-      lng: destinationLng,
-    });
-
-    setMapZoom(15);
-  }, [destinationLat, destinationLng]);
+    moveMapTo(
+      {
+        lat: destinationLat,
+        lng: destinationLng,
+      },
+      15,
+    );
+  }, [destinationLat, destinationLng, moveMapTo]);
 
   /* ------------------------------------------------------------------------ */
   /* Destination selected from search                                         */
@@ -918,28 +939,30 @@ function NavigationMap({
 
   const handleDestinationSelect = (selectedDestination: Destination) => {
     setDestination(selectedDestination);
+
     setRoute(null);
     setRouteError(null);
 
     setNavigationActive(false);
+
     setCurrentStepIndex(0);
     setOffRoute(false);
     setArrived(false);
 
     /*
-     * Search selection should always move the map to
-     * the selected destination.
+     * Explicit search action:
+     * move to the destination once.
+     *
+     * Future GPS updates will NOT move the map
+     * unless live navigation is active.
      */
-    setMapCenter(selectedDestination.location);
+    moveMapTo(selectedDestination.location, 15);
 
-    setMapZoom(15);
-
-    // Keep search compact after selecting.
     setSearchCollapsed(true);
   };
 
   /* ------------------------------------------------------------------------ */
-  /* Calculate route                                                          */
+  /* Calculate route                                                           */
   /* ------------------------------------------------------------------------ */
 
   const calculateRoute = useCallback(
@@ -993,9 +1016,9 @@ function NavigationMap({
           (point) => new google.maps.LatLng(point.lat, point.lng),
         );
 
-        /* ------------------------------------------------------------------ */
-        /* Extract navigation steps                                           */
-        /* ------------------------------------------------------------------ */
+        /* -------------------------------------------------------------- */
+        /* Extract navigation steps                                      */
+        /* -------------------------------------------------------------- */
 
         const steps: NavigationStep[] = [];
 
@@ -1032,17 +1055,19 @@ function NavigationMap({
         setArrived(false);
 
         arrivedSpokenRef.current = false;
+
         lastSpokenStepRef.current = null;
 
         /*
-         * When simply viewing a route, center on the
-         * destination. During navigation, keep following
-         * the user's location instead.
+         * When simply viewing a route:
+         * center on the destination.
+         *
+         * During navigation:
+         * do not move away from the user's
+         * current location.
          */
         if (!navigationActive) {
-          setMapCenter(destination.location);
-
-          setMapZoom(14);
+          moveMapTo(destination.location, 14);
         }
       } catch (error) {
         console.error("Route calculation error:", error);
@@ -1054,7 +1079,7 @@ function NavigationMap({
         setLoadingRoute(false);
       }
     },
-    [destination, navigationActive],
+    [destination, navigationActive, moveMapTo],
   );
 
   /* ------------------------------------------------------------------------ */
@@ -1070,7 +1095,7 @@ function NavigationMap({
   }, [userLocation, destination, route, loadingRoute, calculateRoute]);
 
   /* ------------------------------------------------------------------------ */
-  /* Navigation progress                                                      */
+  /* Navigation progress                                                       */
   /* ------------------------------------------------------------------------ */
 
   useEffect(() => {
@@ -1079,7 +1104,7 @@ function NavigationMap({
     }
 
     /* ---------------------------------------------------------------------- */
-    /* Check arrival                                                          */
+    /* Check arrival                                                           */
     /* ---------------------------------------------------------------------- */
 
     if (destination) {
@@ -1146,7 +1171,7 @@ function NavigationMap({
     }
 
     /* ---------------------------------------------------------------------- */
-    /* Off-route detection                                                    */
+    /* Off-route detection                                                     */
     /* ---------------------------------------------------------------------- */
 
     const distanceFromRoute = getDistanceToPolyline(
@@ -1159,7 +1184,7 @@ function NavigationMap({
     setOffRoute(currentlyOffRoute);
 
     /* ---------------------------------------------------------------------- */
-    /* Automatic rerouting                                                    */
+    /* Automatic rerouting                                                      */
     /* ---------------------------------------------------------------------- */
 
     if (currentlyOffRoute) {
@@ -1230,6 +1255,7 @@ function NavigationMap({
     }
 
     setNavigationActive(true);
+
     setDetailsCollapsed(true);
     setSearchCollapsed(true);
 
@@ -1238,47 +1264,60 @@ function NavigationMap({
     setArrived(false);
 
     arrivedSpokenRef.current = false;
+
     lastSpokenStepRef.current = null;
 
+    /*
+     * If we already have a location,
+     * immediately move the map there
+     * and recalculate the route.
+     */
     if (userLocation) {
-      setMapCenter(userLocation);
-      setMapZoom(17);
+      moveMapTo(userLocation, 17);
 
       await calculateRoute(userLocation);
     }
 
     /*
-     * If there is no location yet, changing
-     * navigationActive above starts the location watcher,
-     * which obtains the user's location.
+     * If we do not have a location yet,
+     * navigationActive causes the live
+     * GPS watcher to start.
      */
   };
 
   /* ------------------------------------------------------------------------ */
-  /* End navigation                                                           */
+  /* End navigation                                                            */
   /* ------------------------------------------------------------------------ */
 
   const stopNavigation = () => {
     setNavigationActive(false);
+
     setCurrentStepIndex(0);
     setOffRoute(false);
     setArrived(false);
 
     arrivedSpokenRef.current = false;
+
     lastSpokenStepRef.current = null;
 
     if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
     }
 
+    /*
+     * The navigation watcher is automatically
+     * cleared by the navigationActive effect.
+     *
+     * Move back to a normal map zoom,
+     * but do NOT continuously follow the user.
+     */
     if (userLocation) {
-      setMapCenter(userLocation);
-      setMapZoom(15);
+      moveMapTo(userLocation, 15);
     }
   };
 
   /* ------------------------------------------------------------------------ */
-  /* Reset                                                                    */
+  /* Reset                                                                     */
   /* ------------------------------------------------------------------------ */
 
   const resetMap = () => {
@@ -1292,13 +1331,11 @@ function NavigationMap({
     setSearchCollapsed(false);
     setDetailsCollapsed(false);
 
-    setMapCenter(userLocation || defaultCenter);
-
-    setMapZoom(userLocation ? 15 : 13);
+    moveMapTo(userLocation || defaultCenter, userLocation ? 15 : 13);
   };
 
   /* ------------------------------------------------------------------------ */
-  /* Fare                                                                     */
+  /* Fare                                                                      */
   /* ------------------------------------------------------------------------ */
 
   const estimatedFare = calculateFare(route?.distanceMeters ?? null);
@@ -1311,7 +1348,7 @@ function NavigationMap({
       : null;
 
   /* ------------------------------------------------------------------------ */
-  /* Render                                                                   */
+  /* Render                                                                    */
   /* ------------------------------------------------------------------------ */
 
   return (
@@ -1335,7 +1372,15 @@ function NavigationMap({
           height: "100%",
         }}
       >
-        <MapController center={mapCenter} zoom={mapZoom} />
+        {/* ---------------------------------------------------------------- */}
+        {/* Camera controller                                                */}
+        {/* ---------------------------------------------------------------- */}
+
+        <MapController request={cameraRequest} />
+
+        {/* ---------------------------------------------------------------- */}
+        {/* Destination search                                               */}
+        {/* ---------------------------------------------------------------- */}
 
         <DestinationSearch
           onSelect={handleDestinationSelect}
@@ -1344,7 +1389,7 @@ function NavigationMap({
         />
 
         {/* ---------------------------------------------------------------- */}
-        {/* Current location marker                                          */}
+        {/* Current location marker                                           */}
         {/* ---------------------------------------------------------------- */}
 
         {userLocation && (
@@ -1370,7 +1415,7 @@ function NavigationMap({
         <RoutePolyline route={route} />
 
         {/* ---------------------------------------------------------------- */}
-        {/* Current location button                                          */}
+        {/* Current location button                                           */}
         {/* ---------------------------------------------------------------- */}
 
         <Paper
@@ -1379,7 +1424,7 @@ function NavigationMap({
             position: "absolute",
             right: 16,
             top: 16,
-            zIndex: 15,
+            zIndex: 50,
             borderRadius: 3,
             overflow: "hidden",
           }}
@@ -1408,7 +1453,7 @@ function NavigationMap({
         </Paper>
 
         {/* ---------------------------------------------------------------- */}
-        {/* Location error                                                   */}
+        {/* Location error                                                    */}
         {/* ---------------------------------------------------------------- */}
 
         {locationError && (
@@ -1418,8 +1463,14 @@ function NavigationMap({
               position: "absolute",
               left: 16,
               right: 16,
-              bottom: navigationActive ? 190 : destination ? 190 : 24,
-              zIndex: 15,
+
+              /*
+               * Keep errors above the application's
+               * bottom navigation.
+               */
+              bottom: navigationActive || destination ? 205 : 88,
+
+              zIndex: 60,
               p: 1.5,
               borderRadius: 2,
               backgroundColor: "rgba(255,255,255,0.96)",
@@ -1432,7 +1483,7 @@ function NavigationMap({
         )}
 
         {/* ---------------------------------------------------------------- */}
-        {/* No destination instruction                                       */}
+        {/* No destination instruction                                        */}
         {/* ---------------------------------------------------------------- */}
 
         {!destination && !locationError && (
@@ -1442,8 +1493,13 @@ function NavigationMap({
               position: "absolute",
               left: 16,
               right: 16,
-              bottom: 24,
-              zIndex: 10,
+
+              /*
+               * Above bottom navigation.
+               */
+              bottom: 88,
+
+              zIndex: 40,
               p: 2,
               borderRadius: 3,
               textAlign: "center",
@@ -1457,7 +1513,7 @@ function NavigationMap({
         )}
 
         {/* ---------------------------------------------------------------- */}
-        {/* Route error                                                      */}
+        {/* Route error                                                       */}
         {/* ---------------------------------------------------------------- */}
 
         {routeError && (
@@ -1467,8 +1523,10 @@ function NavigationMap({
               position: "absolute",
               left: 16,
               right: 16,
-              bottom: navigationActive ? 150 : destination ? 150 : 24,
-              zIndex: 15,
+
+              bottom: navigationActive || destination ? 205 : 88,
+
+              zIndex: 60,
               p: 1.5,
               borderRadius: 2,
               backgroundColor: "rgba(255,255,255,0.96)",
@@ -1491,15 +1549,24 @@ function NavigationMap({
               position: "absolute",
               left: 12,
               right: 12,
-              bottom: 50,
-              zIndex: 30,
+
+              /*
+               * IMPORTANT:
+               * Previously this was 50px.
+               * It could sit underneath the bottom
+               * navigation. 88px gives the card
+               * enough clearance.
+               */
+              bottom: 88,
+
+              zIndex: 100,
               borderRadius: 4,
               overflow: "hidden",
               backgroundColor: "rgba(255,255,255,0.98)",
             }}
           >
             {/* --------------------------------------------------------- */}
-            {/* Navigation header                                         */}
+            {/* Navigation header                                          */}
             {/* --------------------------------------------------------- */}
 
             <Box
@@ -1551,7 +1618,7 @@ function NavigationMap({
             </Box>
 
             {/* --------------------------------------------------------- */}
-            {/* Navigation instruction                                    */}
+            {/* Navigation instruction                                     */}
             {/* --------------------------------------------------------- */}
 
             <Box
@@ -1569,7 +1636,9 @@ function NavigationMap({
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    sx={{ mt: 0.25 }}
+                    sx={{
+                      mt: 0.25,
+                    }}
                   >
                     {destination.name}
                   </Typography>
@@ -1593,7 +1662,9 @@ function NavigationMap({
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    sx={{ mt: 0.5 }}
+                    sx={{
+                      mt: 0.5,
+                    }}
                   >
                     You appear to be off the current route.
                   </Typography>
@@ -1651,7 +1722,9 @@ function NavigationMap({
                       <Typography
                         variant="body2"
                         color="text.secondary"
-                        sx={{ mt: 0.5 }}
+                        sx={{
+                          mt: 0.5,
+                        }}
                       >
                         {formatDistance(distanceToCurrentStep)} to next turn
                       </Typography>
@@ -1676,7 +1749,7 @@ function NavigationMap({
             </Box>
 
             {/* --------------------------------------------------------- */}
-            {/* Navigation footer                                         */}
+            {/* Navigation footer                                          */}
             {/* --------------------------------------------------------- */}
 
             <Box
@@ -1714,7 +1787,7 @@ function NavigationMap({
         )}
 
         {/* ================================================================= */}
-        {/* DESTINATION / ROUTE DETAILS                                      */}
+        {/* DESTINATION / ROUTE DETAILS                                       */}
         {/* ================================================================= */}
 
         {destination && !navigationActive && (
@@ -1730,8 +1803,13 @@ function NavigationMap({
                   position: "absolute",
                   left: 12,
                   right: 12,
-                  bottom: 50,
-                  zIndex: 20,
+
+                  /*
+                   * Above bottom navigation.
+                   */
+                  bottom: 88,
+
+                  zIndex: 100,
                   borderRadius: 3,
                   overflow: "hidden",
                   backgroundColor: "rgba(255,255,255,0.97)",
@@ -1778,9 +1856,9 @@ function NavigationMap({
                 </Box>
               </Paper>
             ) : (
-              /* ========================================================== */
-              /* EXPANDED ROUTE DETAILS                                    */
-              /* ========================================================== */
+              /* ======================================================== */
+              /* EXPANDED ROUTE DETAILS                                   */
+              /* ======================================================== */
 
               <Paper
                 elevation={7}
@@ -1788,8 +1866,14 @@ function NavigationMap({
                   position: "absolute",
                   left: 12,
                   right: 12,
-                  bottom: 50,
-                  zIndex: 20,
+
+                  /*
+                   * Main fix for the card being hidden
+                   * by the bottom navigation.
+                   */
+                  bottom: 88,
+
+                  zIndex: 100,
                   borderRadius: 4,
                   overflow: "hidden",
                   backgroundColor: "rgba(255,255,255,0.98)",
@@ -1804,9 +1888,9 @@ function NavigationMap({
                   flexDirection: "column",
                 }}
               >
-                {/* ------------------------------------------------------ */}
-                {/* Header                                                  */}
-                {/* ------------------------------------------------------ */}
+                {/* ---------------------------------------------------- */}
+                {/* Header                                                 */}
+                {/* ---------------------------------------------------- */}
 
                 <Box
                   sx={{
@@ -1833,9 +1917,9 @@ function NavigationMap({
                   </button>
                 </Box>
 
-                {/* ------------------------------------------------------ */}
+                {/* ---------------------------------------------------- */}
                 {/* Scrollable content                                     */}
-                {/* ------------------------------------------------------ */}
+                {/* ---------------------------------------------------- */}
 
                 <Box
                   sx={{
@@ -1846,7 +1930,9 @@ function NavigationMap({
                     minHeight: 0,
                   }}
                 >
-                  {/* Destination */}
+                  {/* -------------------------------------------------- */}
+                  {/* Destination                                         */}
+                  {/* -------------------------------------------------- */}
 
                   <Box
                     sx={{
@@ -1877,7 +1963,9 @@ function NavigationMap({
                         <Typography
                           variant="body2"
                           color="text.secondary"
-                          sx={{ mt: 0.5 }}
+                          sx={{
+                            mt: 0.5,
+                          }}
                         >
                           {destination.address}
                         </Typography>
@@ -1885,7 +1973,9 @@ function NavigationMap({
                     </Box>
                   </Box>
 
-                  {/* Route statistics */}
+                  {/* -------------------------------------------------- */}
+                  {/* Route statistics                                     */}
+                  {/* -------------------------------------------------- */}
 
                   {route && (
                     <Box
@@ -1896,6 +1986,8 @@ function NavigationMap({
                         mt: 1.5,
                       }}
                     >
+                      {/* Distance */}
+
                       <Box
                         sx={{
                           textAlign: "center",
@@ -1919,6 +2011,8 @@ function NavigationMap({
                         </Typography>
                       </Box>
 
+                      {/* Travel time */}
+
                       <Box
                         sx={{
                           textAlign: "center",
@@ -1941,6 +2035,8 @@ function NavigationMap({
                           {formatDuration(route.durationSeconds)}
                         </Typography>
                       </Box>
+
+                      {/* Fare */}
 
                       <Box
                         sx={{
@@ -1975,7 +2071,9 @@ function NavigationMap({
                     </Box>
                   )}
 
-                  {/* Loading */}
+                  {/* -------------------------------------------------- */}
+                  {/* Loading                                              */}
+                  {/* -------------------------------------------------- */}
 
                   {loadingRoute && (
                     <Box
@@ -1995,7 +2093,9 @@ function NavigationMap({
                     </Box>
                   )}
 
-                  {/* Use My Location */}
+                  {/* -------------------------------------------------- */}
+                  {/* Use My Location                                      */}
+                  {/* -------------------------------------------------- */}
 
                   {!userLocation && !loadingRoute && (
                     <Button
@@ -2020,7 +2120,9 @@ function NavigationMap({
                     </Button>
                   )}
 
-                  {/* Start Navigation */}
+                  {/* -------------------------------------------------- */}
+                  {/* Start Navigation                                     */}
+                  {/* -------------------------------------------------- */}
 
                   {route && (
                     <Button
@@ -2040,7 +2142,9 @@ function NavigationMap({
                     </Button>
                   )}
 
-                  {/* Reset */}
+                  {/* -------------------------------------------------- */}
+                  {/* Reset                                                */}
+                  {/* -------------------------------------------------- */}
 
                   <Button
                     fullWidth

@@ -12,11 +12,11 @@ export default function Landing() {
         <Box className="mt-4">
           <Typography
             align="center"
-            variant="h1"
+            fontSize={"100px"}
             color="white"
             sx={{ textShadow: "0 12px 18px rgba(0, 0, 0, 0.35)" }}
           >
-            TARA
+            <b>TARA</b>
           </Typography>
           <Typography
             align="center"
