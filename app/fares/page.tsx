@@ -15,8 +15,36 @@ import {
   StepLabel,
   Typography,
   Paper,
+  StepConnector,
 } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
+
+const ArrowStepConnector = () => (
+  <StepConnector
+    sx={{
+      ml: "12px",
+
+      "& .MuiStepConnector-line": {
+        minHeight: 32,
+        borderLeft: "2px solid #168dcc",
+        position: "relative",
+        marginLeft: "0px",
+
+        "&::after": {
+          content: '""',
+          position: "absolute",
+          bottom: -1,
+          left: -5,
+          width: 8,
+          height: 8,
+          borderRight: "2px solid #168dcc",
+          borderBottom: "2px solid #168dcc",
+          transform: "rotate(45deg)",
+        },
+      },
+    }}
+  />
+);
 
 export default function Fares() {
   const router = useRouter();
@@ -137,7 +165,7 @@ export default function Fares() {
               Route Details
             </Typography>
 
-            <Stepper orientation="vertical">
+            <Stepper orientation="vertical" connector={<ArrowStepConnector />}>
               {mergedSteps.map((step: any, index: number) => (
                 <Step key={index} active>
                   <StepLabel>
