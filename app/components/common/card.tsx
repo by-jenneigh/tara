@@ -4,7 +4,7 @@ import {
   DESTINATION_TYPE_STYLES,
   DestinationType,
 } from "@/app/components/types/destinations-type";
-import { CardActionArea, Box, Chip } from "@mui/material";
+import { Box, CardActionArea, Chip } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -22,24 +22,58 @@ type DestinationCardProps = {
 export default function DestinationCard(props: DestinationCardProps) {
   const { name, image, content, onCardClick, type } = props;
 
+  const isImage = typeof image === "string";
+
   return (
-    <Card sx={{ maxWidth: 140, borderRadius: 4 }}>
-      <CardActionArea onClick={onCardClick}>
-        <Box sx={{ position: "relative" }}>
-          {typeof image === "string" ? (
-            <CardMedia sx={{ height: 100 }} image={image} title={name} />
-          ) : (
+    <Card
+      sx={{
+        width: "100%",
+        borderRadius: 4,
+        overflow: "hidden",
+      }}
+    >
+      <CardActionArea
+        onClick={onCardClick}
+        sx={{
+          width: "100%",
+        }}
+      >
+        <Box
+          sx={{
+            position: "relative",
+            width: "100%",
+          }}
+        >
+          {isImage ? (
             <CardMedia
               sx={{
-                width: 150,
-                height: 60,
+                width: "100%",
+                height: 100,
+                objectFit: "cover",
+              }}
+              image={image as string}
+              title={name}
+            />
+          ) : (
+            <Box
+              sx={{
+                width: "100%",
+                height: 80,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              {image}
-            </CardMedia>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {image}
+              </Box>
+            </Box>
           )}
 
           {type && (
@@ -57,20 +91,29 @@ export default function DestinationCard(props: DestinationCardProps) {
             />
           )}
         </Box>
-        <CardContent>
+
+        <CardContent
+          sx={{
+            width: "100%",
+            boxSizing: "border-box",
+            py: 1.5,
+            px: 2,
+          }}
+        >
           <Typography
-            align={typeof image === "string" ? "left" : "center"}
-            gutterBottom
+            align={isImage ? "left" : "center"}
             variant="subtitle1"
             component="div"
-            mb={1}
-            lineHeight={1}
+            mb={content ? 1 : 0}
+            lineHeight={1.2}
+            fontWeight={600}
           >
             {name}
           </Typography>
+
           {content && (
             <Typography
-              align={typeof image === "string" ? "left" : "center"}
+              align={isImage ? "left" : "center"}
               variant="body2"
               sx={{
                 color: "text.secondary",
