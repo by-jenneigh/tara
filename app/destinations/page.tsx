@@ -320,7 +320,7 @@ export default function Destinations() {
     >
       <Stack
         sx={{
-          width: "100%",
+          // width: "100%",
           maxWidth: 900,
         }}
       >
@@ -387,6 +387,7 @@ export default function Destinations() {
                         townCount === 1 ? "destination" : "destinations"
                       }`}
                       onCardClick={() => handleTownClick(town)}
+                      textAlign="center"
                     />
                   </Grid>
                 );
@@ -427,6 +428,7 @@ export default function Destinations() {
                       }`}
                       icon={<CategoryIcon size={28} strokeWidth={2} />}
                       onCardClick={() => handleCategoryClick(type)}
+                      textAlign="left"
                     />
                   </Grid>
                 );

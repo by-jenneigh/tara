@@ -9,6 +9,7 @@ type CategoryCardProps = {
   icon?: ReactNode;
   content?: string;
   onCardClick?: () => void;
+  textAlign: string;
 };
 
 export default function CategoryCard({
@@ -16,6 +17,7 @@ export default function CategoryCard({
   icon,
   content,
   onCardClick,
+  textAlign,
 }: CategoryCardProps) {
   return (
     <Card
@@ -68,7 +70,7 @@ export default function CategoryCard({
             sx={{
               minWidth: 0,
               flex: 1,
-              textAlign: "left",
+              textAlign: textAlign,
             }}
           >
             <Typography
